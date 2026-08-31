@@ -1,0 +1,122 @@
+ WARN cache for Repodata at /home/csung/.cache/rattler/cache/repodata is on a network/parallel filesystem (NFS/SMB/FUSE/BeeGFS/Lustre/GPFS/CephFS), redirected to /tmp/pixi-cache-csung/repodata for this run. Set [cache.repodata] in config.toml or PIXI_CACHE_DIR to override, or [cache.netfs-redirect] = "never" to keep the original path.
+2026-08-27T18:12:47 prefetch.3.4.1: 1) Resolving 'SRR25630408'...
+2026-08-27T18:12:49 prefetch.3.4.1: Current preference is set to retrieve SRA Normalized Format files with full base quality scores
+2026-08-27T18:12:49 prefetch.3.4.1: 1) Downloading 'SRR25630408'...
+2026-08-27T18:12:49 prefetch.3.4.1:  SRA Normalized Format file is being retrieved
+2026-08-27T18:12:49 prefetch.3.4.1:  Downloading via HTTPS...
+2026-08-27T18:15:49 prefetch.3.4.1:  HTTPS download succeed
+2026-08-27T18:16:08 prefetch.3.4.1:  'SRR25630408' is valid: 5360032557 bytes were streamed from 5360021443
+2026-08-27T18:16:08 prefetch.3.4.1: 1) 'SRR25630408' was downloaded successfully
+2026-08-27T18:16:08 prefetch.3.4.1: 1) Resolving 'SRR25630408's dependencies...
+2026-08-27T18:16:08 prefetch.3.4.1: 'SRR25630408' has 0 unresolved dependencies
+	Command being timed: "pixi run prefetch SRR25630408 --max-size u"
+	User time (seconds): 30.42
+	System time (seconds): 3.16
+	Percent of CPU this job got: 16%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:22.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 62952
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 22493
+	Voluntary context switches: 16096
+	Involuntary context switches: 116
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+ WARN cache for Repodata at /home/csung/.cache/rattler/cache/repodata is on a network/parallel filesystem (NFS/SMB/FUSE/BeeGFS/Lustre/GPFS/CephFS), redirected to /tmp/pixi-cache-csung/repodata for this run. Set [cache.repodata] in config.toml or PIXI_CACHE_DIR to override, or [cache.netfs-redirect] = "never" to keep the original path.
+2026-08-27T18:16:09 prefetch.3.4.1: 1) Resolving 'SRR25630384'...
+2026-08-27T18:16:10 prefetch.3.4.1: Current preference is set to retrieve SRA Normalized Format files with full base quality scores
+2026-08-27T18:16:10 prefetch.3.4.1: 1) Downloading 'SRR25630384'...
+2026-08-27T18:16:10 prefetch.3.4.1:  SRA Normalized Format file is being retrieved
+2026-08-27T18:16:10 prefetch.3.4.1:  Downloading via HTTPS...
+2026-08-27T18:16:41 prefetch.3.4.1:  HTTPS download succeed
+2026-08-27T18:16:42 prefetch.3.4.1:  'SRR25630384' is valid: 881142129 bytes were streamed from 881135444
+2026-08-27T18:16:42 prefetch.3.4.1: 1) 'SRR25630384' was downloaded successfully
+2026-08-27T18:16:42 prefetch.3.4.1: 1) Resolving 'SRR25630384's dependencies...
+2026-08-27T18:16:42 prefetch.3.4.1: 'SRR25630384' has 0 unresolved dependencies
+	Command being timed: "pixi run prefetch SRR25630384 --max-size u"
+	User time (seconds): 5.00
+	System time (seconds): 0.58
+	Percent of CPU this job got: 16%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:33.89
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 62976
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 21957
+	Voluntary context switches: 2885
+	Involuntary context switches: 33
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+ WARN cache for Repodata at /home/csung/.cache/rattler/cache/repodata is on a network/parallel filesystem (NFS/SMB/FUSE/BeeGFS/Lustre/GPFS/CephFS), redirected to /tmp/pixi-cache-csung/repodata for this run. Set [cache.repodata] in config.toml or PIXI_CACHE_DIR to override, or [cache.netfs-redirect] = "never" to keep the original path.
+spots read      : 54,900,823
+reads read      : 109,801,646
+reads written   : 109,801,646
+	Command being timed: "pixi run fasterq-dump SRR25630408 --threads 8"
+	User time (seconds): 143.69
+	System time (seconds): 12.73
+	Percent of CPU this job got: 139%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:52.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 747968
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 196340
+	Voluntary context switches: 159464
+	Involuntary context switches: 2510
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+ WARN cache for Repodata at /home/csung/.cache/rattler/cache/repodata is on a network/parallel filesystem (NFS/SMB/FUSE/BeeGFS/Lustre/GPFS/CephFS), redirected to /tmp/pixi-cache-csung/repodata for this run. Set [cache.repodata] in config.toml or PIXI_CACHE_DIR to override, or [cache.netfs-redirect] = "never" to keep the original path.
+spots read      : 8,870,047
+reads read      : 17,740,094
+reads written   : 17,740,094
+	Command being timed: "pixi run fasterq-dump SRR25630384 --threads 8"
+	User time (seconds): 23.27
+	System time (seconds): 2.59
+	Percent of CPU this job got: 145%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:17.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 748576
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 195926
+	Voluntary context switches: 39083
+	Involuntary context switches: 399
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

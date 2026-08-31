@@ -1,0 +1,5 @@
+ Comment on the overall data quality of your two libraries. Go beyond per-base qscore distributions. Examine the `FastQC` [documentation](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/) for guidance on interpreting results and planning next steps. Make and justify a recommendation on whether these data are of high enough quality to use for further analysis.
+
+
+I have four files - 2 for each read for CcoxCrh_comrhy110_EO_adult_1 and 2 for each read for Cco_com101_EO_adult_1. All files had good base sequence quality (~34). It looks like they all have Illumina Universal Adapters. There were warnings for sequence duplication levels, but this is expected since RNA transcripts can be produced multiple times. I also noticed that none of the files had any Ns, or unknowns, which points to a generally good quality of reads. All of the per sequence GC content matched the expected result pretty well except for read 1 of Cco_com101_EO_adult_1, which could be due to high GC-content in the primers.
+
