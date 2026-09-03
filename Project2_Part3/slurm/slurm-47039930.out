@@ -1,0 +1,785 @@
+
+ ------------------------------------------------------------------------------
+|   Another GFF Analysis Toolkit (AGAT) - Version: v1.7.0                      |
+|   https://github.com/NBISweden/AGAT                                          |
+|   National Bioinformatics Infrastructure Sweden (NBIS) - www.nbis.se         |
+ ------------------------------------------------------------------------------
+Using standard /gpfs/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/.pixi/envs/default/lib/perl5/site_perl/auto/share/dist/AGAT/feature_levels.yaml file
+GTF version relax selected from the agat config file.
+=> Output format will be GTFrelax.
+                                        
+                                       
+                          ------ Start parsing ------                           
+-------------------------- parse options and metadata --------------------------
+Accessing the feature_levels YAML file
+=> Attribute used to group features when no Parent/ID relationship exists (i.e common tag):
+	* locus_tag
+	* gene_id
+=> merge_loci option activated
+=> FASTA within the file will be thrown away!
+=> Machine information:
+	This script is being run by perl v5.32.1
+	Bioperl location being used: /gpfs/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/.pixi/envs/default/lib/perl5/site_perl/Bio/
+	Operating system being used: linux 
+=> Accessing Ontology
+	No ontology accessible from the gff file header!
+	We use the SOFA ontology distributed with AGAT:
+		/gpfs/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/.pixi/envs/default/lib/perl5/site_perl/auto/share/dist/AGAT/so.obo
+	Read ontology /gpfs/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/.pixi/envs/default/lib/perl5/site_perl/auto/share/dist/AGAT/so.obo:
+		4 root terms, and 2596 total terms, and 1516 leaf terms
+	Filtering ontology:
+		We found 1861 terms that are sequence_feature or is_a child of it.
+--------------------- collecting general data information ----------------------
+Parsing file campylomormyrus.gff
+Lines parsed: 539728Lines parsed: 1105324Lines parsed: 1680526Lines parsed: 2256407Lines parsed: 2823399Lines parsed: 3390402Lines parsed: 3953147Lines parsed: 4521817Lines parsed: 5087989Lines parsed: 5654625Lines parsed: 6221087Lines parsed: 6775800Lines parsed: 7331615Lines parsed: 7903556=> Number of line in file: 8054450
+=> Number of comment lines: 16433
+=> Number of empty lines: 0
+=> Fasta included: No
+=> Number of features lines: 8038017
+=> Number of feature lines with 1 fields (while 9 expected): 16433
+=> Number of feature type (3rd column): 11
+	* Level1: 5 => contig expressed_sequence_match gene match protein_match
+	* level2: 2 => mRNA match_part
+	* level3: 4 => CDS exon five_prime_UTR three_prime_UTR
+	* unknown: 0 => 
+=> Version of the GFF parser selected by AGAT: 3
+
+-------- Start of in-depth analysis (file by chunck 1 CPU - 73 chuncks) --------
+[Thu Sep  3 10:20:13 2026] Parsing:   0%
+[Thu Sep  3 10:20:13 2026] Parsing:   0%
+[Thu Sep  3 10:20:13 2026] Parsing:   0%
+[Thu Sep  3 10:20:14 2026] Parsing:   0%
+[Thu Sep  3 10:20:14 2026] Parsing:   0%
+[Thu Sep  3 10:20:15 2026] Parsing:   0%
+[Thu Sep  3 10:20:15 2026] Parsing:   0%
+[Thu Sep  3 10:20:16 2026] Parsing:   1%
+[Thu Sep  3 10:20:16 2026] Parsing:   1%
+[Thu Sep  3 10:20:17 2026] Parsing:   1%
+[Thu Sep  3 10:20:22 2026] Parsing:   1%
+[Thu Sep  3 10:20:22 2026] Parsing:   1%
+[Thu Sep  3 10:20:23 2026] Parsing:   1%
+[Thu Sep  3 10:20:23 2026] Parsing:   1%
+[Thu Sep  3 10:20:24 2026] Parsing:   2%
+[Thu Sep  3 10:20:24 2026] Parsing:   2%
+[Thu Sep  3 10:20:25 2026] Parsing:   2%
+[Thu Sep  3 10:20:25 2026] Parsing:   2%
+[Thu Sep  3 10:20:31 2026] Parsing:   2%
+[Thu Sep  3 10:20:32 2026] Parsing:   2%
+[Thu Sep  3 10:20:32 2026] Parsing:   3%
+[Thu Sep  3 10:20:33 2026] Parsing:   3%
+[Thu Sep  3 10:20:33 2026] Parsing:   3%
+[Thu Sep  3 10:20:34 2026] Parsing:   3%
+[Thu Sep  3 10:20:34 2026] Parsing:   3%
+[Thu Sep  3 10:20:35 2026] Parsing:   3%
+[Thu Sep  3 10:20:39 2026] Parsing:   3%
+[Thu Sep  3 10:20:39 2026] Parsing:   4%
+[Thu Sep  3 10:20:40 2026] Parsing:   4%
+[Thu Sep  3 10:20:40 2026] Parsing:   4%
+[Thu Sep  3 10:20:41 2026] Parsing:   4%
+[Thu Sep  3 10:20:41 2026] Parsing:   4%
+[Thu Sep  3 10:20:42 2026] Parsing:   5%
+[Thu Sep  3 10:20:42 2026] Parsing:   5%
+[Thu Sep  3 10:20:43 2026] Parsing:   5%
+[Thu Sep  3 10:20:48 2026] Parsing:   5%
+[Thu Sep  3 10:20:48 2026] Parsing:   5%
+[Thu Sep  3 10:20:49 2026] Parsing:   5%
+[Thu Sep  3 10:20:49 2026] Parsing:   5%
+[Thu Sep  3 10:20:50 2026] Parsing:   6%
+[Thu Sep  3 10:20:50 2026] Parsing:   6%
+[Thu Sep  3 10:20:51 2026] Parsing:   6%
+[Thu Sep  3 10:20:51 2026] Parsing:   6%
+[Thu Sep  3 10:20:52 2026] Parsing:   6%
+[Thu Sep  3 10:20:57 2026] Parsing:   6%
+[Thu Sep  3 10:20:57 2026] Parsing:   6%
+[Thu Sep  3 10:20:58 2026] Parsing:   7%
+[Thu Sep  3 10:20:58 2026] Parsing:   7%
+[Thu Sep  3 10:20:59 2026] Parsing:   7%
+[Thu Sep  3 10:20:59 2026] Parsing:   7%
+[Thu Sep  3 10:21:00 2026] Parsing:   7%
+[Thu Sep  3 10:21:00 2026] Parsing:   7%
+[Thu Sep  3 10:21:06 2026] Parsing:   7%
+[Thu Sep  3 10:21:06 2026] Parsing:   8%
+[Thu Sep  3 10:21:07 2026] Parsing:   8%
+[Thu Sep  3 10:21:07 2026] Parsing:   8%
+[Thu Sep  3 10:21:08 2026] Parsing:   8%
+[Thu Sep  3 10:21:08 2026] Parsing:   8%
+[Thu Sep  3 10:21:09 2026] Parsing:   9%
+[Thu Sep  3 10:21:09 2026] Parsing:   9%
+[Thu Sep  3 10:21:10 2026] Parsing:   9%
+[Thu Sep  3 10:21:15 2026] Parsing:   9%
+[Thu Sep  3 10:21:15 2026] Parsing:   9%
+[Thu Sep  3 10:21:16 2026] Parsing:   9%
+[Thu Sep  3 10:21:16 2026] Parsing:   9%
+[Thu Sep  3 10:21:17 2026] Parsing:  10%
+[Thu Sep  3 10:21:17 2026] Parsing:  10%
+[Thu Sep  3 10:21:18 2026] Parsing:  10%
+[Thu Sep  3 10:21:18 2026] Parsing:  10%
+[Thu Sep  3 10:21:23 2026] Parsing:  10%
+[Thu Sep  3 10:21:23 2026] Parsing:  10%
+[Thu Sep  3 10:21:24 2026] Parsing:  10%
+[Thu Sep  3 10:21:24 2026] Parsing:  11%
+[Thu Sep  3 10:21:25 2026] Parsing:  11%
+[Thu Sep  3 10:21:25 2026] Parsing:  11%
+[Thu Sep  3 10:21:26 2026] Parsing:  11%
+[Thu Sep  3 10:21:26 2026] Parsing:  11%
+[Thu Sep  3 10:21:32 2026] Parsing:  11%
+[Thu Sep  3 10:21:32 2026] Parsing:  12%
+[Thu Sep  3 10:21:33 2026] Parsing:  12%
+[Thu Sep  3 10:21:33 2026] Parsing:  12%
+[Thu Sep  3 10:21:34 2026] Parsing:  12%
+[Thu Sep  3 10:21:34 2026] Parsing:  12%
+[Thu Sep  3 10:21:35 2026] Parsing:  13%
+[Thu Sep  3 10:21:35 2026] Parsing:  13%
+[Thu Sep  3 10:21:36 2026] Parsing:  13%
+[Thu Sep  3 10:21:36 2026] Parsing:  13%
+[Thu Sep  3 10:21:42 2026] Parsing:  13%
+[Thu Sep  3 10:21:42 2026] Parsing:  13%
+[Thu Sep  3 10:21:43 2026] Parsing:  13%
+[Thu Sep  3 10:21:43 2026] Parsing:  14%
+[Thu Sep  3 10:21:44 2026] Parsing:  14%
+[Thu Sep  3 10:21:44 2026] Parsing:  14%
+[Thu Sep  3 10:21:45 2026] Parsing:  14%
+[Thu Sep  3 10:21:45 2026] Parsing:  14%
+[Thu Sep  3 10:21:46 2026] Parsing:  14%
+[Thu Sep  3 10:21:51 2026] Parsing:  14%
+[Thu Sep  3 10:21:51 2026] Parsing:  15%
+[Thu Sep  3 10:21:52 2026] Parsing:  15%
+[Thu Sep  3 10:21:52 2026] Parsing:  15%
+[Thu Sep  3 10:21:53 2026] Parsing:  15%
+[Thu Sep  3 10:21:53 2026] Parsing:  15%
+[Thu Sep  3 10:21:54 2026] Parsing:  15%
+[Thu Sep  3 10:21:54 2026] Parsing:  16%
+[Thu Sep  3 10:21:59 2026] Parsing:  16%
+[Thu Sep  3 10:22:00 2026] Parsing:  16%
+[Thu Sep  3 10:22:00 2026] Parsing:  16%
+[Thu Sep  3 10:22:01 2026] Parsing:  16%
+[Thu Sep  3 10:22:01 2026] Parsing:  16%
+[Thu Sep  3 10:22:02 2026] Parsing:  17%
+[Thu Sep  3 10:22:02 2026] Parsing:  17%
+[Thu Sep  3 10:22:03 2026] Parsing:  17%
+[Thu Sep  3 10:22:03 2026] Parsing:  17%
+[Thu Sep  3 10:22:04 2026] Parsing:  17%
+[Thu Sep  3 10:22:09 2026] Parsing:  17%
+[Thu Sep  3 10:22:09 2026] Parsing:  17%
+[Thu Sep  3 10:22:10 2026] Parsing:  18%
+[Thu Sep  3 10:22:10 2026] Parsing:  18%
+[Thu Sep  3 10:22:11 2026] Parsing:  18%
+[Thu Sep  3 10:22:11 2026] Parsing:  18%
+[Thu Sep  3 10:22:12 2026] Parsing:  18%
+[Thu Sep  3 10:22:12 2026] Parsing:  18%
+[Thu Sep  3 10:22:17 2026] Parsing:  19%
+[Thu Sep  3 10:22:17 2026] Parsing:  19%
+[Thu Sep  3 10:22:18 2026] Parsing:  19%
+[Thu Sep  3 10:22:18 2026] Parsing:  19%
+[Thu Sep  3 10:22:19 2026] Parsing:  19%
+[Thu Sep  3 10:22:19 2026] Parsing:  19%
+[Thu Sep  3 10:22:20 2026] Parsing:  20%
+[Thu Sep  3 10:22:20 2026] Parsing:  20%
+[Thu Sep  3 10:22:25 2026] Parsing:  20%
+[Thu Sep  3 10:22:26 2026] Parsing:  20%
+[Thu Sep  3 10:22:26 2026] Parsing:  20%
+[Thu Sep  3 10:22:27 2026] Parsing:  20%
+[Thu Sep  3 10:22:27 2026] Parsing:  21%
+[Thu Sep  3 10:22:28 2026] Parsing:  21%
+[Thu Sep  3 10:22:28 2026] Parsing:  21%
+[Thu Sep  3 10:22:29 2026] Parsing:  21%
+[Thu Sep  3 10:22:34 2026] Parsing:  21%
+[Thu Sep  3 10:22:34 2026] Parsing:  21%
+[Thu Sep  3 10:22:35 2026] Parsing:  22%
+[Thu Sep  3 10:22:35 2026] Parsing:  22%
+[Thu Sep  3 10:22:36 2026] Parsing:  22%
+[Thu Sep  3 10:22:36 2026] Parsing:  22%
+[Thu Sep  3 10:22:37 2026] Parsing:  22%
+[Thu Sep  3 10:22:37 2026] Parsing:  22%
+[Thu Sep  3 10:22:41 2026] Parsing:  22%
+[Thu Sep  3 10:22:41 2026] Parsing:  23%
+[Thu Sep  3 10:22:42 2026] Parsing:  23%
+[Thu Sep  3 10:22:42 2026] Parsing:  23%
+[Thu Sep  3 10:22:43 2026] Parsing:  23%
+[Thu Sep  3 10:22:43 2026] Parsing:  23%
+[Thu Sep  3 10:22:44 2026] Parsing:  24%
+[Thu Sep  3 10:22:44 2026] Parsing:  24%
+[Thu Sep  3 10:22:50 2026] Parsing:  24%
+[Thu Sep  3 10:22:51 2026] Parsing:  24%
+[Thu Sep  3 10:22:51 2026] Parsing:  24%
+[Thu Sep  3 10:22:52 2026] Parsing:  24%
+[Thu Sep  3 10:22:52 2026] Parsing:  25%
+[Thu Sep  3 10:22:53 2026] Parsing:  25%
+[Thu Sep  3 10:22:53 2026] Parsing:  25%
+[Thu Sep  3 10:22:54 2026] Parsing:  25%
+[Thu Sep  3 10:22:59 2026] Parsing:  25%
+[Thu Sep  3 10:23:00 2026] Parsing:  25%
+[Thu Sep  3 10:23:00 2026] Parsing:  26%
+[Thu Sep  3 10:23:01 2026] Parsing:  26%
+[Thu Sep  3 10:23:01 2026] Parsing:  26%
+[Thu Sep  3 10:23:02 2026] Parsing:  26%
+[Thu Sep  3 10:23:02 2026] Parsing:  26%
+[Thu Sep  3 10:23:03 2026] Parsing:  26%
+[Thu Sep  3 10:23:05 2026] Parsing:  26%
+[Thu Sep  3 10:23:06 2026] Parsing:  27%
+[Thu Sep  3 10:23:06 2026] Parsing:  27%
+[Thu Sep  3 10:23:07 2026] Parsing:  27%
+[Thu Sep  3 10:23:07 2026] Parsing:  27%
+[Thu Sep  3 10:23:08 2026] Parsing:  27%
+[Thu Sep  3 10:23:08 2026] Parsing:  28%
+[Thu Sep  3 10:23:09 2026] Parsing:  28%
+[Thu Sep  3 10:23:14 2026] Parsing:  28%
+[Thu Sep  3 10:23:15 2026] Parsing:  28%
+[Thu Sep  3 10:23:15 2026] Parsing:  28%
+[Thu Sep  3 10:23:16 2026] Parsing:  28%
+[Thu Sep  3 10:23:16 2026] Parsing:  28%
+[Thu Sep  3 10:23:17 2026] Parsing:  29%
+[Thu Sep  3 10:23:17 2026] Parsing:  29%
+[Thu Sep  3 10:23:18 2026] Parsing:  29%
+[Thu Sep  3 10:23:22 2026] Parsing:  29%
+[Thu Sep  3 10:23:23 2026] Parsing:  29%
+[Thu Sep  3 10:23:23 2026] Parsing:  29%
+[Thu Sep  3 10:23:24 2026] Parsing:  29%
+[Thu Sep  3 10:23:24 2026] Parsing:  29%
+[Thu Sep  3 10:23:25 2026] Parsing:  30%
+[Thu Sep  3 10:23:25 2026] Parsing:  30%
+[Thu Sep  3 10:23:26 2026] Parsing:  30%
+[Thu Sep  3 10:23:26 2026] Parsing:  30%
+[Thu Sep  3 10:23:27 2026] Parsing:  30%
+[Thu Sep  3 10:23:31 2026] Parsing:  30%
+[Thu Sep  3 10:23:32 2026] Parsing:  31%
+[Thu Sep  3 10:23:32 2026] Parsing:  31%
+[Thu Sep  3 10:23:33 2026] Parsing:  31%
+[Thu Sep  3 10:23:33 2026] Parsing:  31%
+[Thu Sep  3 10:23:34 2026] Parsing:  31%
+[Thu Sep  3 10:23:34 2026] Parsing:  31%
+[Thu Sep  3 10:23:35 2026] Parsing:  32%
+[Thu Sep  3 10:23:35 2026] Parsing:  32%
+[Thu Sep  3 10:23:36 2026] Parsing:  32%
+[Thu Sep  3 10:23:36 2026] Parsing:  32%
+[Thu Sep  3 10:23:37 2026] Parsing:  32%
+[Thu Sep  3 10:23:37 2026] Parsing:  33%
+[Thu Sep  3 10:23:38 2026] Parsing:  33%
+[Thu Sep  3 10:23:49 2026] Parsing:  33%
+[Thu Sep  3 10:23:50 2026] Parsing:  33%
+[Thu Sep  3 10:23:50 2026] Parsing:  33%
+[Thu Sep  3 10:23:51 2026] Parsing:  33%
+[Thu Sep  3 10:23:51 2026] Parsing:  33%
+[Thu Sep  3 10:23:52 2026] Parsing:  34%
+[Thu Sep  3 10:23:52 2026] Parsing:  34%
+[Thu Sep  3 10:23:53 2026] Parsing:  34%
+[Thu Sep  3 10:23:57 2026] Parsing:  34%
+[Thu Sep  3 10:23:58 2026] Parsing:  34%
+[Thu Sep  3 10:23:58 2026] Parsing:  34%
+[Thu Sep  3 10:23:59 2026] Parsing:  34%
+[Thu Sep  3 10:23:59 2026] Parsing:  35%
+[Thu Sep  3 10:24:00 2026] Parsing:  35%
+[Thu Sep  3 10:24:00 2026] Parsing:  35%
+[Thu Sep  3 10:24:01 2026] Parsing:  35%
+[Thu Sep  3 10:24:06 2026] Parsing:  35%
+[Thu Sep  3 10:24:07 2026] Parsing:  35%
+[Thu Sep  3 10:24:07 2026] Parsing:  36%
+[Thu Sep  3 10:24:08 2026] Parsing:  36%
+[Thu Sep  3 10:24:08 2026] Parsing:  36%
+[Thu Sep  3 10:24:09 2026] Parsing:  36%
+[Thu Sep  3 10:24:09 2026] Parsing:  36%
+[Thu Sep  3 10:24:10 2026] Parsing:  37%
+[Thu Sep  3 10:24:14 2026] Parsing:  37%
+[Thu Sep  3 10:24:14 2026] Parsing:  37%
+[Thu Sep  3 10:24:15 2026] Parsing:  37%
+[Thu Sep  3 10:24:15 2026] Parsing:  37%
+[Thu Sep  3 10:24:16 2026] Parsing:  37%
+[Thu Sep  3 10:24:16 2026] Parsing:  38%
+[Thu Sep  3 10:24:17 2026] Parsing:  38%
+[Thu Sep  3 10:24:17 2026] Parsing:  38%
+[Thu Sep  3 10:24:22 2026] Parsing:  38%
+[Thu Sep  3 10:24:23 2026] Parsing:  38%
+[Thu Sep  3 10:24:23 2026] Parsing:  38%
+[Thu Sep  3 10:24:24 2026] Parsing:  38%
+[Thu Sep  3 10:24:24 2026] Parsing:  39%
+[Thu Sep  3 10:24:25 2026] Parsing:  39%
+[Thu Sep  3 10:24:25 2026] Parsing:  39%
+[Thu Sep  3 10:24:26 2026] Parsing:  39%
+[Thu Sep  3 10:24:26 2026] Parsing:  39%
+[Thu Sep  3 10:24:27 2026] Parsing:  39%
+[Thu Sep  3 10:24:32 2026] Parsing:  39%
+[Thu Sep  3 10:24:33 2026] Parsing:  40%
+[Thu Sep  3 10:24:33 2026] Parsing:  40%
+[Thu Sep  3 10:24:34 2026] Parsing:  40%
+[Thu Sep  3 10:24:34 2026] Parsing:  40%
+[Thu Sep  3 10:24:35 2026] Parsing:  40%
+[Thu Sep  3 10:24:35 2026] Parsing:  41%
+[Thu Sep  3 10:24:36 2026] Parsing:  41%
+[Thu Sep  3 10:24:39 2026] Parsing:  41%
+[Thu Sep  3 10:24:39 2026] Parsing:  41%
+[Thu Sep  3 10:24:40 2026] Parsing:  41%
+[Thu Sep  3 10:24:40 2026] Parsing:  41%
+[Thu Sep  3 10:24:41 2026] Parsing:  41%
+[Thu Sep  3 10:24:41 2026] Parsing:  42%
+[Thu Sep  3 10:24:42 2026] Parsing:  42%
+[Thu Sep  3 10:24:42 2026] Parsing:  42%
+[Thu Sep  3 10:24:43 2026] Parsing:  42%
+[Thu Sep  3 10:24:48 2026] Parsing:  42%
+[Thu Sep  3 10:24:48 2026] Parsing:  42%
+[Thu Sep  3 10:24:49 2026] Parsing:  42%
+[Thu Sep  3 10:24:49 2026] Parsing:  43%
+[Thu Sep  3 10:24:50 2026] Parsing:  43%
+[Thu Sep  3 10:24:50 2026] Parsing:  43%
+[Thu Sep  3 10:24:51 2026] Parsing:  43%
+[Thu Sep  3 10:24:51 2026] Parsing:  43%
+[Thu Sep  3 10:24:52 2026] Parsing:  44%
+[Thu Sep  3 10:24:52 2026] Parsing:  44%
+[Thu Sep  3 10:24:58 2026] Parsing:  44%
+[Thu Sep  3 10:24:59 2026] Parsing:  44%
+[Thu Sep  3 10:24:59 2026] Parsing:  44%
+[Thu Sep  3 10:25:00 2026] Parsing:  44%
+[Thu Sep  3 10:25:00 2026] Parsing:  44%
+[Thu Sep  3 10:25:01 2026] Parsing:  45%
+[Thu Sep  3 10:25:01 2026] Parsing:  45%
+[Thu Sep  3 10:25:02 2026] Parsing:  45%
+[Thu Sep  3 10:25:07 2026] Parsing:  45%
+[Thu Sep  3 10:25:08 2026] Parsing:  45%
+[Thu Sep  3 10:25:08 2026] Parsing:  45%
+[Thu Sep  3 10:25:09 2026] Parsing:  46%
+[Thu Sep  3 10:25:09 2026] Parsing:  46%
+[Thu Sep  3 10:25:10 2026] Parsing:  46%
+[Thu Sep  3 10:25:10 2026] Parsing:  46%
+[Thu Sep  3 10:25:11 2026] Parsing:  46%
+[Thu Sep  3 10:25:11 2026] Parsing:  46%
+[Thu Sep  3 10:25:12 2026] Parsing:  47%
+[Thu Sep  3 10:25:12 2026] Parsing:  47%
+[Thu Sep  3 10:25:13 2026] Parsing:  47%
+[Thu Sep  3 10:25:13 2026] Parsing:  47%
+[Thu Sep  3 10:25:21 2026] Parsing:  47%
+[Thu Sep  3 10:25:22 2026] Parsing:  47%
+[Thu Sep  3 10:25:22 2026] Parsing:  47%
+[Thu Sep  3 10:25:23 2026] Parsing:  48%
+[Thu Sep  3 10:25:23 2026] Parsing:  48%
+[Thu Sep  3 10:25:24 2026] Parsing:  48%
+[Thu Sep  3 10:25:24 2026] Parsing:  48%
+[Thu Sep  3 10:25:25 2026] Parsing:  48%
+[Thu Sep  3 10:25:30 2026] Parsing:  48%
+[Thu Sep  3 10:25:30 2026] Parsing:  49%
+[Thu Sep  3 10:25:31 2026] Parsing:  49%
+[Thu Sep  3 10:25:31 2026] Parsing:  49%
+[Thu Sep  3 10:25:32 2026] Parsing:  49%
+[Thu Sep  3 10:25:32 2026] Parsing:  49%
+[Thu Sep  3 10:25:33 2026] Parsing:  49%
+[Thu Sep  3 10:25:33 2026] Parsing:  50%
+[Thu Sep  3 10:25:34 2026] Parsing:  50%
+[Thu Sep  3 10:25:40 2026] Parsing:  50%
+[Thu Sep  3 10:25:40 2026] Parsing:  50%
+[Thu Sep  3 10:25:41 2026] Parsing:  50%
+[Thu Sep  3 10:25:41 2026] Parsing:  50%
+[Thu Sep  3 10:25:42 2026] Parsing:  51%
+[Thu Sep  3 10:25:42 2026] Parsing:  51%
+[Thu Sep  3 10:25:43 2026] Parsing:  51%
+[Thu Sep  3 10:25:43 2026] Parsing:  51%
+[Thu Sep  3 10:25:44 2026] Parsing:  51%
+[Thu Sep  3 10:25:49 2026] Parsing:  51%
+[Thu Sep  3 10:25:50 2026] Parsing:  51%
+[Thu Sep  3 10:25:50 2026] Parsing:  52%
+[Thu Sep  3 10:25:51 2026] Parsing:  52%
+[Thu Sep  3 10:25:51 2026] Parsing:  52%
+[Thu Sep  3 10:25:52 2026] Parsing:  52%
+[Thu Sep  3 10:25:52 2026] Parsing:  52%
+[Thu Sep  3 10:25:53 2026] Parsing:  53%
+[Thu Sep  3 10:25:53 2026] Parsing:  53%
+[Thu Sep  3 10:25:58 2026] Parsing:  53%
+[Thu Sep  3 10:25:59 2026] Parsing:  53%
+[Thu Sep  3 10:25:59 2026] Parsing:  53%
+[Thu Sep  3 10:26:00 2026] Parsing:  53%
+[Thu Sep  3 10:26:00 2026] Parsing:  53%
+[Thu Sep  3 10:26:01 2026] Parsing:  54%
+[Thu Sep  3 10:26:01 2026] Parsing:  54%
+[Thu Sep  3 10:26:02 2026] Parsing:  54%
+[Thu Sep  3 10:26:07 2026] Parsing:  54%
+[Thu Sep  3 10:26:07 2026] Parsing:  54%
+[Thu Sep  3 10:26:08 2026] Parsing:  54%
+[Thu Sep  3 10:26:08 2026] Parsing:  55%
+[Thu Sep  3 10:26:09 2026] Parsing:  55%
+[Thu Sep  3 10:26:09 2026] Parsing:  55%
+[Thu Sep  3 10:26:10 2026] Parsing:  55%
+[Thu Sep  3 10:26:10 2026] Parsing:  55%
+[Thu Sep  3 10:26:16 2026] Parsing:  55%
+[Thu Sep  3 10:26:17 2026] Parsing:  55%
+[Thu Sep  3 10:26:17 2026] Parsing:  56%
+[Thu Sep  3 10:26:18 2026] Parsing:  56%
+[Thu Sep  3 10:26:18 2026] Parsing:  56%
+[Thu Sep  3 10:26:19 2026] Parsing:  56%
+[Thu Sep  3 10:26:19 2026] Parsing:  56%
+[Thu Sep  3 10:26:20 2026] Parsing:  56%
+[Thu Sep  3 10:26:25 2026] Parsing:  57%
+[Thu Sep  3 10:26:25 2026] Parsing:  57%
+[Thu Sep  3 10:26:26 2026] Parsing:  57%
+[Thu Sep  3 10:26:26 2026] Parsing:  57%
+[Thu Sep  3 10:26:27 2026] Parsing:  57%
+[Thu Sep  3 10:26:27 2026] Parsing:  57%
+[Thu Sep  3 10:26:28 2026] Parsing:  58%
+[Thu Sep  3 10:26:28 2026] Parsing:  58%
+[Thu Sep  3 10:26:34 2026] Parsing:  58%
+[Thu Sep  3 10:26:34 2026] Parsing:  58%
+[Thu Sep  3 10:26:35 2026] Parsing:  58%
+[Thu Sep  3 10:26:35 2026] Parsing:  58%
+[Thu Sep  3 10:26:36 2026] Parsing:  59%
+[Thu Sep  3 10:26:36 2026] Parsing:  59%
+[Thu Sep  3 10:26:37 2026] Parsing:  59%
+[Thu Sep  3 10:26:37 2026] Parsing:  59%
+[Thu Sep  3 10:26:43 2026] Parsing:  59%
+[Thu Sep  3 10:26:44 2026] Parsing:  59%
+[Thu Sep  3 10:26:44 2026] Parsing:  59%
+[Thu Sep  3 10:26:45 2026] Parsing:  60%
+[Thu Sep  3 10:26:45 2026] Parsing:  60%
+[Thu Sep  3 10:26:46 2026] Parsing:  60%
+[Thu Sep  3 10:26:46 2026] Parsing:  60%
+[Thu Sep  3 10:26:47 2026] Parsing:  60%
+[Thu Sep  3 10:26:47 2026] Parsing:  61%
+[Thu Sep  3 10:26:48 2026] Parsing:  61%
+[Thu Sep  3 10:26:48 2026] Parsing:  61%
+[Thu Sep  3 10:26:54 2026] Parsing:  61%
+[Thu Sep  3 10:26:55 2026] Parsing:  61%
+[Thu Sep  3 10:26:55 2026] Parsing:  61%
+[Thu Sep  3 10:26:56 2026] Parsing:  61%
+[Thu Sep  3 10:26:56 2026] Parsing:  62%
+[Thu Sep  3 10:26:57 2026] Parsing:  62%
+[Thu Sep  3 10:26:57 2026] Parsing:  62%
+[Thu Sep  3 10:26:58 2026] Parsing:  62%
+[Thu Sep  3 10:27:05 2026] Parsing:  62%
+[Thu Sep  3 10:27:06 2026] Parsing:  62%
+[Thu Sep  3 10:27:06 2026] Parsing:  63%
+[Thu Sep  3 10:27:07 2026] Parsing:  63%
+[Thu Sep  3 10:27:07 2026] Parsing:  63%
+[Thu Sep  3 10:27:08 2026] Parsing:  63%
+[Thu Sep  3 10:27:08 2026] Parsing:  63%
+[Thu Sep  3 10:27:09 2026] Parsing:  63%
+[Thu Sep  3 10:27:14 2026] Parsing:  63%
+[Thu Sep  3 10:27:15 2026] Parsing:  64%
+[Thu Sep  3 10:27:15 2026] Parsing:  64%
+[Thu Sep  3 10:27:16 2026] Parsing:  64%
+[Thu Sep  3 10:27:16 2026] Parsing:  64%
+[Thu Sep  3 10:27:17 2026] Parsing:  64%
+[Thu Sep  3 10:27:17 2026] Parsing:  64%
+[Thu Sep  3 10:27:18 2026] Parsing:  65%
+[Thu Sep  3 10:27:23 2026] Parsing:  65%
+[Thu Sep  3 10:27:24 2026] Parsing:  65%
+[Thu Sep  3 10:27:24 2026] Parsing:  65%
+[Thu Sep  3 10:27:25 2026] Parsing:  65%
+[Thu Sep  3 10:27:25 2026] Parsing:  65%
+[Thu Sep  3 10:27:26 2026] Parsing:  66%
+[Thu Sep  3 10:27:26 2026] Parsing:  66%
+[Thu Sep  3 10:27:27 2026] Parsing:  66%
+[Thu Sep  3 10:27:27 2026] Parsing:  66%
+[Thu Sep  3 10:27:32 2026] Parsing:  66%
+[Thu Sep  3 10:27:32 2026] Parsing:  66%
+[Thu Sep  3 10:27:33 2026] Parsing:  66%
+[Thu Sep  3 10:27:33 2026] Parsing:  67%
+[Thu Sep  3 10:27:34 2026] Parsing:  67%
+[Thu Sep  3 10:27:34 2026] Parsing:  67%
+[Thu Sep  3 10:27:35 2026] Parsing:  67%
+[Thu Sep  3 10:27:35 2026] Parsing:  67%
+[Thu Sep  3 10:27:40 2026] Parsing:  67%
+[Thu Sep  3 10:27:41 2026] Parsing:  68%
+[Thu Sep  3 10:27:41 2026] Parsing:  68%
+[Thu Sep  3 10:27:42 2026] Parsing:  68%
+[Thu Sep  3 10:27:42 2026] Parsing:  68%
+[Thu Sep  3 10:27:43 2026] Parsing:  68%
+[Thu Sep  3 10:27:43 2026] Parsing:  68%
+[Thu Sep  3 10:27:44 2026] Parsing:  69%
+[Thu Sep  3 10:27:44 2026] Parsing:  69%
+[Thu Sep  3 10:27:45 2026] Parsing:  69%
+[Thu Sep  3 10:27:51 2026] Parsing:  69%
+[Thu Sep  3 10:27:51 2026] Parsing:  69%
+[Thu Sep  3 10:27:52 2026] Parsing:  69%
+[Thu Sep  3 10:27:52 2026] Parsing:  70%
+[Thu Sep  3 10:27:53 2026] Parsing:  70%
+[Thu Sep  3 10:27:53 2026] Parsing:  70%
+[Thu Sep  3 10:27:54 2026] Parsing:  70%
+[Thu Sep  3 10:27:54 2026] Parsing:  70%
+[Thu Sep  3 10:27:55 2026] Parsing:  70%
+[Thu Sep  3 10:27:55 2026] Parsing:  71%
+[Thu Sep  3 10:28:01 2026] Parsing:  71%
+[Thu Sep  3 10:28:02 2026] Parsing:  71%
+[Thu Sep  3 10:28:02 2026] Parsing:  71%
+[Thu Sep  3 10:28:03 2026] Parsing:  71%
+[Thu Sep  3 10:28:03 2026] Parsing:  71%
+[Thu Sep  3 10:28:04 2026] Parsing:  72%
+[Thu Sep  3 10:28:04 2026] Parsing:  72%
+[Thu Sep  3 10:28:05 2026] Parsing:  72%
+[Thu Sep  3 10:28:05 2026] Parsing:  72%
+[Thu Sep  3 10:28:10 2026] Parsing:  72%
+[Thu Sep  3 10:28:11 2026] Parsing:  72%
+[Thu Sep  3 10:28:11 2026] Parsing:  72%
+[Thu Sep  3 10:28:12 2026] Parsing:  73%
+[Thu Sep  3 10:28:12 2026] Parsing:  73%
+[Thu Sep  3 10:28:13 2026] Parsing:  73%
+[Thu Sep  3 10:28:13 2026] Parsing:  73%
+[Thu Sep  3 10:28:14 2026] Parsing:  73%
+[Thu Sep  3 10:28:19 2026] Parsing:  73%
+[Thu Sep  3 10:28:19 2026] Parsing:  74%
+[Thu Sep  3 10:28:20 2026] Parsing:  74%
+[Thu Sep  3 10:28:20 2026] Parsing:  74%
+[Thu Sep  3 10:28:21 2026] Parsing:  74%
+[Thu Sep  3 10:28:21 2026] Parsing:  74%
+[Thu Sep  3 10:28:22 2026] Parsing:  75%
+[Thu Sep  3 10:28:22 2026] Parsing:  75%
+[Thu Sep  3 10:28:28 2026] Parsing:  75%
+[Thu Sep  3 10:28:29 2026] Parsing:  75%
+[Thu Sep  3 10:28:29 2026] Parsing:  75%
+[Thu Sep  3 10:28:30 2026] Parsing:  75%
+[Thu Sep  3 10:28:30 2026] Parsing:  75%
+[Thu Sep  3 10:28:31 2026] Parsing:  76%
+[Thu Sep  3 10:28:31 2026] Parsing:  76%
+[Thu Sep  3 10:28:32 2026] Parsing:  76%
+[Thu Sep  3 10:28:38 2026] Parsing:  76%
+[Thu Sep  3 10:28:38 2026] Parsing:  76%
+[Thu Sep  3 10:28:39 2026] Parsing:  76%
+[Thu Sep  3 10:28:39 2026] Parsing:  77%
+[Thu Sep  3 10:28:40 2026] Parsing:  77%
+[Thu Sep  3 10:28:40 2026] Parsing:  77%
+[Thu Sep  3 10:28:41 2026] Parsing:  77%
+[Thu Sep  3 10:28:41 2026] Parsing:  77%
+[Thu Sep  3 10:28:47 2026] Parsing:  77%
+[Thu Sep  3 10:28:48 2026] Parsing:  77%
+[Thu Sep  3 10:28:48 2026] Parsing:  78%
+[Thu Sep  3 10:28:49 2026] Parsing:  78%
+[Thu Sep  3 10:28:49 2026] Parsing:  78%
+[Thu Sep  3 10:28:50 2026] Parsing:  78%
+[Thu Sep  3 10:28:50 2026] Parsing:  78%
+[Thu Sep  3 10:28:51 2026] Parsing:  79%
+[Thu Sep  3 10:28:56 2026] Parsing:  79%
+[Thu Sep  3 10:28:57 2026] Parsing:  79%
+[Thu Sep  3 10:28:57 2026] Parsing:  79%
+[Thu Sep  3 10:28:58 2026] Parsing:  79%
+[Thu Sep  3 10:28:58 2026] Parsing:  80%
+[Thu Sep  3 10:28:59 2026] Parsing:  80%
+[Thu Sep  3 10:28:59 2026] Parsing:  80%
+[Thu Sep  3 10:29:04 2026] Parsing:  80%
+[Thu Sep  3 10:29:05 2026] Parsing:  80%
+[Thu Sep  3 10:29:05 2026] Parsing:  80%
+[Thu Sep  3 10:29:06 2026] Parsing:  80%
+[Thu Sep  3 10:29:06 2026] Parsing:  81%
+[Thu Sep  3 10:29:07 2026] Parsing:  81%
+[Thu Sep  3 10:29:07 2026] Parsing:  81%
+[Thu Sep  3 10:29:08 2026] Parsing:  81%
+[Thu Sep  3 10:29:12 2026] Parsing:  81%
+[Thu Sep  3 10:29:13 2026] Parsing:  81%
+[Thu Sep  3 10:29:13 2026] Parsing:  82%
+[Thu Sep  3 10:29:14 2026] Parsing:  82%
+[Thu Sep  3 10:29:14 2026] Parsing:  82%
+[Thu Sep  3 10:29:15 2026] Parsing:  82%
+[Thu Sep  3 10:29:15 2026] Parsing:  82%
+[Thu Sep  3 10:29:16 2026] Parsing:  82%
+[Thu Sep  3 10:29:16 2026] Parsing:  82%
+[Thu Sep  3 10:29:22 2026] Parsing:  83%
+[Thu Sep  3 10:29:22 2026] Parsing:  83%
+[Thu Sep  3 10:29:23 2026] Parsing:  83%
+[Thu Sep  3 10:29:23 2026] Parsing:  83%
+[Thu Sep  3 10:29:24 2026] Parsing:  83%
+[Thu Sep  3 10:29:24 2026] Parsing:  83%
+[Thu Sep  3 10:29:25 2026] Parsing:  84%
+[Thu Sep  3 10:29:25 2026] Parsing:  84%
+[Thu Sep  3 10:29:31 2026] Parsing:  84%
+[Thu Sep  3 10:29:31 2026] Parsing:  84%
+[Thu Sep  3 10:29:32 2026] Parsing:  84%
+[Thu Sep  3 10:29:32 2026] Parsing:  84%
+[Thu Sep  3 10:29:33 2026] Parsing:  85%
+[Thu Sep  3 10:29:33 2026] Parsing:  85%
+[Thu Sep  3 10:29:34 2026] Parsing:  85%
+[Thu Sep  3 10:29:34 2026] Parsing:  85%
+[Thu Sep  3 10:29:35 2026] Parsing:  85%
+[Thu Sep  3 10:29:39 2026] Parsing:  85%
+[Thu Sep  3 10:29:40 2026] Parsing:  86%
+[Thu Sep  3 10:29:40 2026] Parsing:  86%
+[Thu Sep  3 10:29:41 2026] Parsing:  86%
+[Thu Sep  3 10:29:41 2026] Parsing:  86%
+[Thu Sep  3 10:29:42 2026] Parsing:  86%
+[Thu Sep  3 10:29:42 2026] Parsing:  86%
+[Thu Sep  3 10:29:43 2026] Parsing:  86%
+[Thu Sep  3 10:29:47 2026] Parsing:  87%
+[Thu Sep  3 10:29:47 2026] Parsing:  87%
+[Thu Sep  3 10:29:48 2026] Parsing:  87%
+[Thu Sep  3 10:29:48 2026] Parsing:  87%
+[Thu Sep  3 10:29:49 2026] Parsing:  87%
+[Thu Sep  3 10:29:49 2026] Parsing:  87%
+[Thu Sep  3 10:29:50 2026] Parsing:  88%
+[Thu Sep  3 10:29:50 2026] Parsing:  88%
+[Thu Sep  3 10:29:51 2026] Parsing:  88%
+[Thu Sep  3 10:29:56 2026] Parsing:  88%
+[Thu Sep  3 10:29:57 2026] Parsing:  88%
+[Thu Sep  3 10:29:57 2026] Parsing:  88%
+[Thu Sep  3 10:29:58 2026] Parsing:  89%
+[Thu Sep  3 10:29:58 2026] Parsing:  89%
+[Thu Sep  3 10:29:59 2026] Parsing:  89%
+[Thu Sep  3 10:29:59 2026] Parsing:  89%
+[Thu Sep  3 10:30:00 2026] Parsing:  89%
+[Thu Sep  3 10:30:04 2026] Parsing:  89%
+[Thu Sep  3 10:30:05 2026] Parsing:  89%
+[Thu Sep  3 10:30:05 2026] Parsing:  90%
+[Thu Sep  3 10:30:06 2026] Parsing:  90%
+[Thu Sep  3 10:30:06 2026] Parsing:  90%
+[Thu Sep  3 10:30:07 2026] Parsing:  90%
+[Thu Sep  3 10:30:07 2026] Parsing:  90%
+[Thu Sep  3 10:30:08 2026] Parsing:  91%
+[Thu Sep  3 10:30:08 2026] Parsing:  91%
+[Thu Sep  3 10:30:09 2026] Parsing:  91%
+[Thu Sep  3 10:30:09 2026] Parsing:  91%
+[Thu Sep  3 10:30:10 2026] Parsing:  91%
+[Thu Sep  3 10:30:17 2026] Parsing:  91%
+[Thu Sep  3 10:30:18 2026] Parsing:  92%
+[Thu Sep  3 10:30:18 2026] Parsing:  92%
+[Thu Sep  3 10:30:19 2026] Parsing:  92%
+[Thu Sep  3 10:30:19 2026] Parsing:  92%
+[Thu Sep  3 10:30:20 2026] Parsing:  92%
+[Thu Sep  3 10:30:20 2026] Parsing:  92%
+[Thu Sep  3 10:30:21 2026] Parsing:  92%
+[Thu Sep  3 10:30:26 2026] Parsing:  93%
+[Thu Sep  3 10:30:26 2026] Parsing:  93%
+[Thu Sep  3 10:30:27 2026] Parsing:  93%
+[Thu Sep  3 10:30:27 2026] Parsing:  93%
+[Thu Sep  3 10:30:28 2026] Parsing:  93%
+[Thu Sep  3 10:30:28 2026] Parsing:  93%
+[Thu Sep  3 10:30:29 2026] Parsing:  94%
+[Thu Sep  3 10:30:29 2026] Parsing:  94%
+[Thu Sep  3 10:30:30 2026] Parsing:  94%
+[Thu Sep  3 10:30:34 2026] Parsing:  94%
+[Thu Sep  3 10:30:34 2026] Parsing:  94%
+[Thu Sep  3 10:30:35 2026] Parsing:  94%
+[Thu Sep  3 10:30:35 2026] Parsing:  95%
+[Thu Sep  3 10:30:36 2026] Parsing:  95%
+[Thu Sep  3 10:30:36 2026] Parsing:  95%
+[Thu Sep  3 10:30:37 2026] Parsing:  95%
+[Thu Sep  3 10:30:37 2026] Parsing:  95%
+[Thu Sep  3 10:30:42 2026] Parsing:  95%
+[Thu Sep  3 10:30:43 2026] Parsing:  95%
+[Thu Sep  3 10:30:43 2026] Parsing:  96%
+[Thu Sep  3 10:30:44 2026] Parsing:  96%
+[Thu Sep  3 10:30:44 2026] Parsing:  96%
+[Thu Sep  3 10:30:45 2026] Parsing:  96%
+[Thu Sep  3 10:30:45 2026] Parsing:  96%
+[Thu Sep  3 10:30:46 2026] Parsing:  96%
+[Thu Sep  3 10:30:51 2026] Parsing:  97%
+[Thu Sep  3 10:30:52 2026] Parsing:  97%
+[Thu Sep  3 10:30:52 2026] Parsing:  97%
+[Thu Sep  3 10:30:53 2026] Parsing:  97%
+[Thu Sep  3 10:30:53 2026] Parsing:  97%
+[Thu Sep  3 10:30:54 2026] Parsing:  97%
+[Thu Sep  3 10:30:54 2026] Parsing:  98%
+[Thu Sep  3 10:30:55 2026] Parsing:  98%
+[Thu Sep  3 10:31:00 2026] Parsing:  98%
+[Thu Sep  3 10:31:00 2026] Parsing:  98%
+[Thu Sep  3 10:31:01 2026] Parsing:  98%
+[Thu Sep  3 10:31:01 2026] Parsing:  98%
+[Thu Sep  3 10:31:02 2026] Parsing:  99%
+[Thu Sep  3 10:31:02 2026] Parsing:  99%
+[Thu Sep  3 10:31:03 2026] Parsing:  99%
+[Thu Sep  3 10:31:07 2026] Parsing: 100%
+
+Parsing (done in 654 seconds )
+---------------------------- Merging parallel tasks ----------------------------
+[Thu Sep  3 10:31:07 2026] Merging:   0%
+[Thu Sep  3 10:31:08 2026] Merging:   1%
+[Thu Sep  3 10:31:09 2026] Merging:   2%
+[Thu Sep  3 10:31:10 2026] Merging:   4%
+[Thu Sep  3 10:31:11 2026] Merging:   5%
+[Thu Sep  3 10:31:13 2026] Merging:   6%
+[Thu Sep  3 10:31:15 2026] Merging:   8%
+[Thu Sep  3 10:31:16 2026] Merging:   9%
+[Thu Sep  3 10:31:17 2026] Merging:  10%
+[Thu Sep  3 10:31:18 2026] Merging:  12%
+[Thu Sep  3 10:31:19 2026] Merging:  13%
+[Thu Sep  3 10:31:20 2026] Merging:  15%
+[Thu Sep  3 10:31:21 2026] Merging:  16%
+[Thu Sep  3 10:31:22 2026] Merging:  17%
+[Thu Sep  3 10:31:23 2026] Merging:  19%
+[Thu Sep  3 10:31:24 2026] Merging:  20%
+[Thu Sep  3 10:31:26 2026] Merging:  21%
+[Thu Sep  3 10:31:27 2026] Merging:  23%
+[Thu Sep  3 10:31:28 2026] Merging:  24%
+[Thu Sep  3 10:31:29 2026] Merging:  26%
+[Thu Sep  3 10:31:30 2026] Merging:  27%
+[Thu Sep  3 10:31:31 2026] Merging:  28%
+[Thu Sep  3 10:31:32 2026] Merging:  30%
+[Thu Sep  3 10:31:33 2026] Merging:  31%
+[Thu Sep  3 10:31:34 2026] Merging:  32%
+[Thu Sep  3 10:31:36 2026] Merging:  34%
+[Thu Sep  3 10:31:37 2026] Merging:  35%
+[Thu Sep  3 10:31:38 2026] Merging:  36%
+[Thu Sep  3 10:31:39 2026] Merging:  38%
+[Thu Sep  3 10:31:41 2026] Merging:  39%
+[Thu Sep  3 10:31:42 2026] Merging:  41%
+[Thu Sep  3 10:31:43 2026] Merging:  42%
+[Thu Sep  3 10:31:45 2026] Merging:  43%
+[Thu Sep  3 10:31:47 2026] Merging:  45%
+[Thu Sep  3 10:31:48 2026] Merging:  46%
+[Thu Sep  3 10:31:49 2026] Merging:  47%
+[Thu Sep  3 10:31:50 2026] Merging:  49%
+[Thu Sep  3 10:31:51 2026] Merging:  50%
+[Thu Sep  3 10:31:53 2026] Merging:  52%
+[Thu Sep  3 10:31:54 2026] Merging:  53%
+[Thu Sep  3 10:31:55 2026] Merging:  54%
+[Thu Sep  3 10:31:56 2026] Merging:  56%
+[Thu Sep  3 10:31:57 2026] Merging:  57%
+[Thu Sep  3 10:31:59 2026] Merging:  58%
+[Thu Sep  3 10:32:00 2026] Merging:  60%
+[Thu Sep  3 10:32:01 2026] Merging:  61%
+[Thu Sep  3 10:32:03 2026] Merging:  63%
+[Thu Sep  3 10:32:04 2026] Merging:  64%
+[Thu Sep  3 10:32:05 2026] Merging:  65%
+[Thu Sep  3 10:32:07 2026] Merging:  67%
+[Thu Sep  3 10:32:08 2026] Merging:  68%
+[Thu Sep  3 10:32:09 2026] Merging:  69%
+[Thu Sep  3 10:32:11 2026] Merging:  71%
+[Thu Sep  3 10:32:12 2026] Merging:  72%
+[Thu Sep  3 10:32:13 2026] Merging:  73%
+[Thu Sep  3 10:32:15 2026] Merging:  75%
+[Thu Sep  3 10:32:17 2026] Merging:  76%
+[Thu Sep  3 10:32:18 2026] Merging:  78%
+[Thu Sep  3 10:32:19 2026] Merging:  79%
+[Thu Sep  3 10:32:20 2026] Merging:  80%
+[Thu Sep  3 10:32:21 2026] Merging:  82%
+[Thu Sep  3 10:32:22 2026] Merging:  83%
+[Thu Sep  3 10:32:24 2026] Merging:  84%
+[Thu Sep  3 10:32:26 2026] Merging:  86%
+[Thu Sep  3 10:32:28 2026] Merging:  87%
+[Thu Sep  3 10:32:29 2026] Merging:  89%
+[Thu Sep  3 10:32:32 2026] Merging:  90%
+[Thu Sep  3 10:32:33 2026] Merging:  91%
+[Thu Sep  3 10:32:33 2026] Merging:  93%
+[Thu Sep  3 10:32:34 2026] Merging:  94%
+[Thu Sep  3 10:32:35 2026] Merging:  95%
+[Thu Sep  3 10:32:36 2026] Merging:  97%
+[Thu Sep  3 10:32:38 2026] Merging:  98%
+[Thu Sep  3 10:32:40 2026] Merging: 100%
+
+Merging (done in 93 seconds )
+................................................................................
+.                           Total time: 762 seconds                            .
+.                          Total memory: 22170.90 Mo                           .
+................................................................................
+                            ------ END parsing ------                           
+converting to GTFrelax
+Formating output to GTFrelax
+
+--------------------------- Job done in 1121 seconds ---------------------------
+command : /gpfs/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/.pixi/envs/default/bin/agat_convert_sp_gff2gtf.pl --gff campylomormyrus.gff -o campylomormyrus.gtf
+date : 09/03/2026 at 10h19m58s
+Job done! Bye Bye!
+
+	Command being timed: "agat_convert_sp_gff2gtf.pl --gff campylomormyrus.gff -o campylomormyrus.gtf"
+	User time (seconds): 1124.14
+	System time (seconds): 15.13
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 19:27.88
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 27507336
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 12859544
+	Voluntary context switches: 39254
+	Involuntary context switches: 1641
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

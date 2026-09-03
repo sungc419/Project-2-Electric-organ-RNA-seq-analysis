@@ -1,0 +1,19 @@
+Using your script from PS8 in Bi621, report the number of mapped and unmapped reads from each of your 2 SAM files. 
+
+    For Cco_com101_EO_adult_1, these were the results:
+
+        The number of reads mapped: 90291760
+        The number of reads unmapped: 16734296
+
+    For CcoxCrh_comrhy110_EO_adult_1, these were the results:
+
+        The number of reads mapped: 16573814
+        The number of reads unmapped: 977002
+
+[Describe whether your reads are "strand-specific", why you think they are, any evidence, and which stranded parameter is appropriate and why]
+
+    I propose that the reads for Cco_com101_EO_adult_1 are strand-specific, because 44.86% of the reads are reverse, as opposed to 24.16% that are forward.
+
+    I propose that the reads for CcoxCrh_comrhy110_EO_adult_1 are strand-specific, because 50.00% of the reads are reverse, as opposed to 23.90% that are forward.
+    
+    Also, the website for the NEXTFLEX RNA-seq kit states that it is strand-specific. 
