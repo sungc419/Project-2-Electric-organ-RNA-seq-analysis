@@ -1,0 +1,14 @@
+What proportion of reads (both R1 and R2) were trimmed?
+
+    For Cco_com101_EO_adult_1, below are the proportion of reads that were trimmed:
+        Read 1 with adapter:               9,563,128 (17.4%)
+        Read 2 with adapter:               9,347,646 (17.0%)
+
+    For CcoxCrh_comrhy110_EO_adult_1, below are the proportion of reads that were trimmed:
+        Read 1 with adapter:               1,934,140 (21.8%)
+        Read 2 with adapter:               1,915,215 (21.6%)
+
+
+Comment on whether you expect R1s and R2s to be adapter-trimmed at different rates and why.*
+
+I expect R1s and R2s to have slightly different rates, but not significantly different. I expect R2s to have a slightly higher trimming rate since R2s are physically in the machine longer and they would degrade more over time, which would cause more to be trimmed off. Compared to the FastQC Reports, the trimming rate of 17% for Cco_com101_EO_adult_1 was fairly similar to the adapter content in the report. For CcoxCrh_comrhy110_EO_adult_1, the trimming rate of 21% differed more from the adapter content in the report. This would again be due to the R2 quality dropping off slightly over time in the machine.

@@ -1,0 +1,80 @@
+TrimmomaticPE: Started with arguments:
+ -threads 8 Cco_com101_EO_adult_1_1_cut.fastq.gz Cco_com101_EO_adult_1_2_cut.fastq.gz Cco_com101_EO_adult_1_1_paired.fastq.gz Cco_com101_EO_adult_1_1_unpaired.fastq.gz Cco_com101_EO_adult_1_2_paired.fastq.gz Cco_com101_EO_adult_1_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35
+Quality encoding detected as phred33
+Input Read Pairs: 54900823 Both Surviving: 53513028 (97.47%) Forward Only Surviving: 593318 (1.08%) Reverse Only Surviving: 477256 (0.87%) Dropped: 317221 (0.58%)
+TrimmomaticPE: Completed successfully
+	Command being timed: "trimmomatic PE -threads 8 Cco_com101_EO_adult_1_1_cut.fastq.gz Cco_com101_EO_adult_1_2_cut.fastq.gz Cco_com101_EO_adult_1_1_paired.fastq.gz Cco_com101_EO_adult_1_1_unpaired.fastq.gz Cco_com101_EO_adult_1_2_paired.fastq.gz Cco_com101_EO_adult_1_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35"
+	User time (seconds): 4008.84
+	System time (seconds): 77.26
+	Percent of CPU this job got: 600%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 11:20.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1183092
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 452588
+	Voluntary context switches: 649337
+	Involuntary context switches: 54411
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3088
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+TrimmomaticPE: Started with arguments:
+ -threads 8 CcoxCrh_comrhy110_EO_adult_1_1_cut.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_cut.fastq.gz CcoxCrh_comrhy110_EO_adult_1_1_paired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_1_unpaired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_paired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35
+Quality encoding detected as phred33
+Exception in thread "main" java.lang.Exception: Trim Stats Collector Exception
+	at org.usadellab.trimmomatic.threading.trimstats.SelfThreadedTrimStatsCollector.run(SelfThreadedTrimStatsCollector.java:62)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:124)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:193)
+	at org.usadellab.trimmomatic.threading.trimstats.SelfThreadedTrimStatsCollector.run(SelfThreadedTrimStatsCollector.java:57)
+	... 1 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.Arrays.copyOf(Arrays.java:3537)
+	at java.base/java.io.ByteArrayOutputStream.toByteArray(ByteArrayOutputStream.java:187)
+	at org.usadellab.trimmomatic.util.compression.GzipParallelCompressor.compress(GzipParallelCompressor.java:82)
+	at org.usadellab.trimmomatic.util.compression.GzipParallelCompressor.compress(GzipParallelCompressor.java:14)
+	at org.usadellab.trimmomatic.threading.serializer.SerializedBlockQueue.pollCompressibleOnce(SerializedBlockQueue.java:77)
+	at org.usadellab.trimmomatic.threading.serializer.SerializedBlockQueue.pollCompressible(SerializedBlockQueue.java:41)
+	at org.usadellab.trimmomatic.threading.serializer.Serializer.pollCompressible(Serializer.java:81)
+	at org.usadellab.trimmomatic.threading.BlockOfWork.processPE(BlockOfWork.java:145)
+	at org.usadellab.trimmomatic.threading.BlockOfWork.process(BlockOfWork.java:209)
+	at org.usadellab.trimmomatic.threading.BlockOfWork.call(BlockOfWork.java:219)
+	at org.usadellab.trimmomatic.threading.BlockOfWork.call(BlockOfWork.java:16)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.runWith(Thread.java:1487)
+	... 1 more
+Command exited with non-zero status 1
+	Command being timed: "trimmomatic PE -threads 8 CcoxCrh_comrhy110_EO_adult_1_1_cut.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_cut.fastq.gz CcoxCrh_comrhy110_EO_adult_1_1_paired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_1_unpaired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_paired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_unpaired.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35"
+	User time (seconds): 35.15
+	System time (seconds): 1.27
+	Percent of CPU this job got: 590%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.16
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1145868
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 85931
+	Voluntary context switches: 10831
+	Involuntary context switches: 824
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
