@@ -1,0 +1,42 @@
+```{r}
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+
+setwd("/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis")
+
+Cco_com101_EO_adult_1_1 = read.table("Cco_com101_EO_adult_1_1_readlength.tsv", col.names = c("Frequency","ReadLength"), header=FALSE) 
+
+Cco_com101_EO_adult_1_2 = read.table("Cco_com101_EO_adult_1_2_readlength.tsv", col.names = c("Frequency","ReadLength"), header=FALSE) 
+
+CcoxCrh_comrhy110_EO_adult_1_1 = read.table("CcoxCrh_comrhy110_EO_adult_1_1.readlength.tsv", col.names = c("Frequency","ReadLength"), header=FALSE)
+
+CcoxCrh_comrhy110_EO_adult_1_2 = read.table("CcoxCrh_comrhy110_EO_adult_1_2.readlength.tsv", col.names = c("Frequency","ReadLength"), header=FALSE) 
+```
+
+```{r}
+#Combo of both forward and reverse read
+Combo_Cco_com101_EO_adult_1 = bind_rows(R1=Cco_com101_EO_adult_1_1, R2=Cco_com101_EO_adult_1_2,.id = "Read")
+
+ggplot(Combo_Cco_com101_EO_adult_1, aes(x = ReadLength, y = log10(Frequency), color = Read)) + 
+  geom_point(alpha = 0.5) + 
+  theme_bw() + 
+  xlab("Read Length") + 
+  ylab("log(10) of Frequency") +
+  labs(title = "Distribution of Cco_com101_EO_adult_1 Read Lengths")
+
+ggsave("Distribution_Cco_com101_EO_adult_1.png", width = 8, height = 5)
+```
+```{r}
+#Combo of both forward and reverse read
+Combo_CcoxCrh_comrhy110_EO_adult_1 = bind_rows(R1=CcoxCrh_comrhy110_EO_adult_1_1,R2=CcoxCrh_comrhy110_EO_adult_1_2,.id = "Read")
+
+ggplot(Combo_CcoxCrh_comrhy110_EO_adult_1, aes(x = ReadLength, y = log10(Frequency), color = Read)) + 
+  geom_point(alpha = 0.5) + 
+  theme_bw() + 
+  xlab("Read Length") + 
+  ylab("log(10) of Frequency") +
+  labs(title = "Distribution of CcoxCrh_comrhy110_EO_adult_1 Read Lengths")
+
+ggsave("Distribution_CcoxCrh_comrhy110_EO_adult_1.png", width = 8, height = 5)
+```
