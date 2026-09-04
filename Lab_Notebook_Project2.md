@@ -9,6 +9,12 @@ SRA tools 3.4.1
 fastqc  0.12.1
 cutadapt version 5.2
 trimmomatic version 0.41
+STAR 2.7.11b
+Samtools 1.23.1
+Numpy 2.5.2
+Matplotlib 3.11.1
+HTseq 2.1.2
+agat 1.7.0
 ```
 ## Bi623-Project2-Part1
 ### Added SRA Toolkit, Fastqc, Cutadapt, and Trimmomatic to pixi environment
@@ -102,8 +108,9 @@ Command being timed: "gzip /projects/bgmp/csung/bioinfo/bi623/Project-2-Electric
 	Percent of CPU this job got: 99%
 	Elapsed (wall clock) time (h:mm:ss or m:ss): 28:13.77
 ```
-### Ran FastQC on downloaded SRR files:
+### Ran FastQC on downloaded SRR files
 
+Used this command:
 `pixi run fastqc SRR25* –o /projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis`
 
 This generated these files:
@@ -115,26 +122,29 @@ SRR25630408_2_fastqc.html
 ```
 
 ### Renamed SRR files
-Naming convention: Species_sample_tissue\_[ageORsize]\_sample#\_readnumber.fastq.gz (follow the csv from the repository).
+Naming convention: Species_sample_tissue\_[ageORsize]\_sample#\_readnumber.fastq.gz (followed the csv in the repository).
 
 Path: `/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/RNAseq_meta_campys.csv`
 
 Old File Names:
-`SRR25630384_1.fastq.gz`
-`SRR25630384_2.fastq.gz`
+```
+SRR25630384_1.fastq.gz
+SRR25630384_2.fastq.gz
+```
 
 Renamed to:
 ```
-CcoxCrh_comrhy110_EO_adult_1_1.fastq.gz	
-CcoxCrh_comrhy110_EO_adult_1_2.fastq.gz	
-	
+CcoxCrh_comrhy110_EO_adult_1_1.fastq.gz
+CcoxCrh_comrhy110_EO_adult_1_2.fastq.gz
 ```
+
 Old File Names:
-`SRR25630384_1.fastq.gz`
-`SRR25630384_2.fastq.gz`
+```
+SRR25630384_1.fastq.gz
+SRR25630384_2.fastq.gz
+```
 
 Renamed to:
-
 ```
 Cco_com101_EO_adult_1_1.fastq.gz	
 Cco_com101_EO_adult_1_2.fastq.gz
@@ -142,18 +152,20 @@ Cco_com101_EO_adult_1_2.fastq.gz
 
 ## Bi623-Project2-Part2
 
-Per FastQC reports, sequences have Illumina Universal Adapters. Found them in the sequence using the following commands:
+Per FastQC reports, sequences have Illumina Universal Adapters. 
 
-Adapters for R1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+```
+Adapter for R1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+Adapter for R2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+```
+
+Found them in the sequence using the following commands:
 
 `zcat Cco_com101_EO_adult_1_1.fastq.gz | grep "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"`
 
-`zcat CcoxCrh_comrhy110_EO_adult_1_1.fastq.gz | grep "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"`
-
-
-Adapter for R2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
-
 `zcat Cco_com101_EO_adult_1_2.fastq.gz | grep "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"`
+
+`zcat CcoxCrh_comrhy110_EO_adult_1_1.fastq.gz | grep "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"`
 
 `zcat CcoxCrh_comrhy110_EO_adult_1_2.fastq.gz | grep "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"`
 
@@ -221,7 +233,7 @@ Total written (filtered):  2,562,147,554 bp (96.3%)
 	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:07.25
 ```
 
-Did another check to see if adapters were cut out:
+Did another check to see if adapters were cut out.
 
 For Cco_com101_EO_adult_1:
 
@@ -230,21 +242,16 @@ For Cco_com101_EO_adult_1:
 `zcat Cco_com101_EO_adult_1_2_cut.fastq.gz | grep "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"`
 
 
-Adapter for R2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+For CcoxCrh_comrhy110_EO_adult_1:
 
-`zcat Cco_com101_EO_adult_1_2_cut.fastq.gz | grep "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"`
+`zcat CcoxCrh_comrhy110_EO_adult_1_2_cut.fastq.gz | grep "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"`
 
 `zcat CcoxCrh_comrhy110_EO_adult_1_2_cut.fastq.gz | grep "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"`
 
 Did not find any results with the search, which is expected since adapters are now gone.
 
 
-
-https://ondemand.talapas.uoregon.edu/ 
-
-Wrote script to trim sequences:
-
-`trimmomatic.sh`
+Wrote script to trim sequences: `trimmomatic.sh`
 
 Format from the documentation used for the script:
 ```
@@ -270,6 +277,13 @@ Command being timed: "trimmomatic PE -threads 8 -Xmx16g CcoxCrh_comrhy110_EO_adu
 		System time (seconds): 13.13
 		Percent of CPU this job got: 578%
 		Elapsed (wall clock) time (h:mm:ss or m:ss): 1:41.48
+```
+Four trimmed output files:
+```
+Cco_com101_EO_adult_1_1_paired.fastq.gz
+Cco_com101_EO_adult_1_2_paired.fastq.gz
+CcoxCrh_comrhy110_EO_adult_1_1_paired.fastq.gz
+CcoxCrh_comrhy110_EO_adult_1_2_paired.fastq.gz
 ```
 
 Wrote script to compute distribution of lengths:
@@ -306,7 +320,8 @@ Command being timed: "zcat CcoxCrh_comrhy110_EO_adult_1_2_paired.fastq.gz"
 I checked the resulting tsv files and confirmed that none of the lengths are above 150 bp length, which is a good sign. The left column is how often the read length appears and the right column is read length in bp.
 
 ### Plot read distributions
-Used Talapas OnDemand for RStudio to plot read distribution
+Used Talapas OnDemand for RStudio to plot read distribution:
+https://ondemand.talapas.uoregon.edu/ 
 
 Wrote R script:
 `Project2_Part2/Distribution.rmd`
@@ -321,3 +336,246 @@ Script generated two graphs:
 Used this command:
 
 `pixi run fastqc *paired.fastq.gz -o /projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis`
+
+## Bi623-Project2-Part3
+
+### Install additional software for alignment and counting of RNA-seq reads
+
+Used this command:
+`pixi add star samtools numpy matplotlib htseq`
+
+Downloaded Campylomormyrus compressirostris genome fasta and gff file from Dryad website:
+
+https://datadryad.org/dataset/doi:10.5061/dryad.c59zw3rcj
+
+### Convert gff file to gtf file
+
+Used agat to convert downloaded gff file to gtf file, since STAR requires a gtf file to align reads.
+
+Referenced this website:
+	https://agat.readthedocs.io/en/latest/tools/agat_convert_sp_gff2gtf.html 
+
+Added agat to pixi environment:
+`pixi add agat`
+
+This is the format from the website:
+`agat_convert_sp_gff2gtf.pl --gff infile.gtf [ -o outfile ]`
+
+Script:
+`agar.sh`
+
+slurm out:
+```
+command : /gpfs/projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis/.pixi/envs/default/bin/agat_convert_sp_gff2gtf.pl --gff campylomormyrus.gff -o campylomormyrus.gtf
+date : 09/03/2026 at 10h19m58s
+Job done! Bye Bye!
+
+	Command being timed: "agat_convert_sp_gff2gtf.pl --gff campylomormyrus.gff -o campylomormyrus.gtf"
+	User time (seconds): 1124.14
+	System time (seconds): 15.13
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 19:27.88
+```
+
+Checked number of exons in both files to see if gtf file was generated successfully. 
+
+Used these commands:
+
+`cat *gtf | cut -f3 | grep -c  "exon"`
+
+`cat *gff | grep -c  "exon"`
+
+Both resulted in 280886 exons, which is a good sign.
+
+### Generated reference genome with STAR
+
+Used this script:
+`Project2_Part3/Scripts/genomeGenerate.sh`
+
+### Aligned to reference genome with STAR
+
+Next, I created another script called `align_refGen.sh` to align the trimmed paired reads to the reference genome.
+
+slurm out:
+```
+Command being timed: "pixi run STAR --runThreadN 8 --runMode alignReads --outFilterMultimapNmax 3 --outSAMunmapped Within KeepPairs --alignIntronMax 1000000 --alignMatesGapMax 1000000 --readFilesCommand zcat --readFilesIn Cco_com101_EO_adult_1_1_paired.fastq.gz Cco_com101_EO_adult_1_2_paired.fastq.gz --genomeDir campylomormyrus_STAR_2.7.11b/ --outFileNamePrefix Cco_com101_EO_adult_1"
+	User time (seconds): 4897.98
+	System time (seconds): 8.88
+	Percent of CPU this job got: 740%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 11:02.53
+```
+```
+Command being timed: "pixi run STAR --runThreadN 8 --runMode alignReads --outFilterMultimapNmax 3 --outSAMunmapped Within KeepPairs --alignIntronMax 1000000 --alignMatesGapMax 1000000 --readFilesCommand zcat --readFilesIn CcoxCrh_comrhy110_EO_adult_1_1_paired.fastq.gz CcoxCrh_comrhy110_EO_adult_1_2_paired.fastq.gz --genomeDir campylomormyrus_STAR_2.7.11b/ --outFileNamePrefix CcoxCrh_comrhy110_EO_adult_1"
+	User time (seconds): 774.23
+	System time (seconds): 2.82
+	Percent of CPU this job got: 598%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:09.89
+```
+
+2 output SAM files:
+`Cco_com101_EO_adult_1Aligned.out.sam`
+`CcoxCrh_comrhy110_EO_adult_1Aligned.out.sam`
+
+### Report number of mapped and unmapped reads
+
+Wrote script to count and print out the mapped and unmapped reads from each of the 2 resulting SAM files:
+`count_alignedReads.py`
+
+Script looked at the bitwise flag to determine if reads are primary or secondary mapping.
+
+Ran these commands:
+`srun -A bgmp -p bgmp --time=60:00 --pty bash`
+
+`./count_alignedReads.py -f Cco_com101_EO_adult_1Aligned.out.sam`
+
+For Cco_com101_EO_adult_1, these were the results:
+
+    The number of reads mapped: 90291760
+    The number of reads unmapped: 16734296
+
+`./script.py -f CcoxCrh_comrhy110_EO_adult_1Aligned.out.sam`
+
+For CcoxCrh_comrhy110_EO_adult_1, these were the results:
+
+    The number of reads mapped: 16573814
+    The number of reads unmapped: 977002
+
+### HTSeq Count
+
+Format from website: https://htseq.readthedocs.io/en/release_0.11.1/count.html 
+
+`htseq-count [options] <alignment_files> <gff_file>`
+
+Used head to look at the first 10 lines of the gff file:
+```
+##gff-version 3
+ptg000927l      .       contig  1       152124  .       .       .       ID=ptg000927l;Name=ptg000927l
+ptg000927l      maker   gene    56390   71949   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53;Name=maker-ptg000927l-augustus-gene-0.53
+ptg000927l      maker   mRNA    56390   71949   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1;Parent=maker-ptg000927l-augustus-gene-0.53;Name=maker-ptg000927l-augustus-gene-0.53-mRNA-1;_AED=0.07;_eAED=0.07;_QI=0|0.66|0.62|0.93|0.93|0.87|16|112|1002
+ptg000927l      maker   exon    56390   56542   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:1;Parent=maker-ptg000927l-augustus-gene-0.53-mRNA-1
+ptg000927l      maker   exon    59403   59766   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:2;Parent=maker-ptg000927l-augustus-gene-0.53-mRNA-1
+ptg000927l      maker   exon    60707   60850   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:3;Parent=maker-ptg000927l-augustus-gene-0.53-mRNA-1
+ptg000927l      maker   exon    61183   61286   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:4;Parent=maker-ptg000927l-augustus-gene-0.53-mRNA-1
+ptg000927l      maker   exon    61594   61774   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:5;Parent=maker-ptg000927l-augustus-gene-0.53-mRNA-1
+ptg000927l      maker   exon    61902   62069   .       +       .       ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:6;Parent=maker-ptg000927l-augustus-gene-0.53-mRNA-1
+```
+(Note: ptg000927 is the chromosome and column 9 is the attribute.)
+
+In column 9 (example shown below), 
+
+`ID=maker-ptg000927l-augustus-gene-0.53-mRNA-1:1;`
+
+The numbers at the end before the ";" change so you should use Parent for the `-i` parameter.
+
+slurm out for CcoxCrh_comrhy110_EO_adult_1:
+
+forward
+```
+Command being timed: "htseq-count -i Parent --stranded=yes CcoxCrh_comrhy110_EO_adult_1Aligned.out.sam campylomormyrus.gff"
+	User time (seconds): 560.76
+	System time (seconds): 2.68
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:26.86
+```
+reverse
+```
+Command being timed: "htseq-count -i Parent --stranded=reverse CcoxCrh_comrhy110_EO_adult_1Aligned.out.sam campylomormyrus.gff"
+	User time (seconds): 595.72
+	System time (seconds): 2.77
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:01.09
+```
+
+slurm out for Cco_com101_EO_adult_1:
+
+forward
+```
+Command being timed: "htseq-count -i Parent --stranded=yes Cco_com101_EO_adult_1Aligned.out.sam campylomormyrus.gff"
+	User time (seconds): 1413.97
+	System time (seconds): 3.66
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 23:53.90
+```
+reverse
+```
+Command being timed: "htseq-count -i Parent --stranded=reverse Cco_com101_EO_adult_1Aligned.out.sam campylomormyrus.gff"
+	User time (seconds): 2996.11
+	System time (seconds): 10.14
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 50:21.49
+```
+
+Generated 4 output files:
+```
+Cco_com101_EO_adult_1_htseqcounts_forstranded.txt
+CcoxCrh_comrhy110_EO_adult_1_htseqcounts_forstranded.txt
+Cco_com101_EO_adult_1_htseqcounts_revstranded.txt
+CcoxCrh_comrhy110_EO_adult_1_htseqcounts_revstranded.txt
+```
+
+
+### Percentage of mapped reads (forward and reverse)
+
+Using `tail`, found that there are 5 lines at the bottom that we don't want to include in our counts.
+```
+snap_masked-ptg003120l-processed-gene-0.9-mRNA-1        0
+snap_masked-ptg003128l-processed-gene-0.5-mRNA-1        0
+snap_masked-ptg003215l-processed-gene-0.5-mRNA-1        0
+snap_masked-ptg003293l-processed-gene-0.3-mRNA-1        0
+snap_masked-ptg003325l-processed-gene-0.4-mRNA-1        0
+__no_feature    7614331
+__ambiguous     576
+__too_low_aQual 11742
+__not_aligned   482356
+__alignment_not_unique  456713
+
+```
+For Cco_com101_EO_adult_1:
+
+Used the following commands to find mapped number of reads for forward and reverse reads.
+
+`head -n -5 Cco_com101_EO_adult_1_htseqcounts_forstranded.txt | awk '{sum+=$2} END {print sum}'`
+
+`head -n -5 Cco_com101_EO_adult_1_htseqcounts_revstranded.txt | awk '{sum+=$2} END {print sum}'`
+
+Used the following commands to find total number of reads.
+
+`awk '{sum+=$2} END {print sum}' Cco_com101_EO_adult_1_htseqcounts_forstranded.txt`
+
+`awk '{sum+=$2} END {print sum}' Cco_com101_EO_adult_1_htseqcounts_forstranded.txt`
+
+Both matched commands resulted in the same total number of reads, which is a good sign.
+
+```
+Number of reads mapped, fw: 1292614
+Number of reads mapped, rv: 24008842
+Total number of reads: 53513028
+Percent of reads mapped, fw: 24.16%
+Percent of reads mapped, rv: 44.86%
+```
+
+For CcoxCrh_comrhy110_EO_adult_1:
+
+Used the following commands to find mapped number of reads for forward and reverse reads.
+`head -n -5 CcoxCrh_comrhy110_EO_adult_1_htseqcounts_forstranded.txt | awk '{sum+=$2} END {print sum}'`
+
+`head -n -5 CcoxCrh_comrhy110_EO_adult_1_htseqcounts_revstranded.txt | awk '{sum+=$2} END {print sum}'`
+
+Used the following commands to find total number of reads.
+
+`awk '{sum+=$2} END {print sum}' CcoxCrh_comrhy110_EO_adult_1_htseqcounts_forstranded.txt`
+
+`awk '{sum+=$2} END {print sum}' CcoxCrh_comrhy110_EO_adult_1_htseqcounts_revstranded.txt`
+
+Both matched commands resulted in the same total number of reads, which is a good sign.
+
+```
+Number of reads mapped, fw: 209690
+Number of reads mapped, rv: 4387460
+Total number of reads: 8775408
+Percent of reads mapped, fw: 23.90%
+Percent of reads mapped, rv: 50.00%
+```
+
+This kit was used during library preparation (strand-specific):
+https://www.revvity.com/product/nex-rapid-dir-rna-seq-kit-2-0-8rxn-nova-5198-01 
