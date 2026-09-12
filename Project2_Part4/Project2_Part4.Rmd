@@ -1,0 +1,588 @@
+---
+title: "Project 2, parts 4 and 5: RNA-seq analysis"
+output: html_document
+date: "2025-05-08"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Project 2 parts 4 and 5 overall: 75 points
+
+Include any code that you used to solve the question as well as the
+answers for all below questions. In parts 4 and 5 from project 2, you
+will explore how gene expression differs between electric fish tissues.
+You will learn how to analyze RNA-seq count data: identify
+differentially expressed genes, distinguish samples, and make biological
+interpretations. Additionally, you will visualize findings and
+communicate them effectively. **Note: Please submit the Rmd and the knit
+HTML file for this assignment**
+
+### Dataset reminder:
+
+In this project, you are be analyzing the count data and identifying
+differentially expressed genes between skeletal muscle and electric
+organ tissue. As a reminder, these datasets originated from two
+different electric fish studies (PRJNA1005245 and PRJNA1005244). It may
+help to consider how these papers analyzed the data: the methods for the
+PRJNA1005244 dataset are
+[published](https://doi.org/10.1093/molbev/msae021) and the methods for
+the PRJNA1005245 dataset are written in the third chapter of a
+[thesis](https://canvas.uoregon.edu/courses/266187/files/22059308?module_item_id=5380118).
+These studies are both using the genus *Campylomormyrus*. **For this
+assignment, you may not need to analyze all of the data to address the
+hypothesis.**
+
+### Resources:
+
+There are several resources that you may use to complete this
+assignment: 1) A primary resource: [DESeq2
+workflow](https://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html#pre-filtering-the-dataset).
+2) [DESeq2's additional
+guide](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+3) [Harvard Bioinformatics Core
+training](https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html).
+
+You are expected to use DESeq2 for this assignment. If you decide to use
+an additional package, please list the package name, how you found it,
+and why you chose to use it. We will do our best to help you navigate
+other packages, but we cannot guarantee support for other packages.
+
+## Project 2 part 4: Hypothesis testing and exploration
+
+0.  In part 4, your goal is to investigate differences in gene
+    expression between the electric organ and skeletal muscle. Write the
+    null hypothesis for this goal below.
+
+H_0 = There is no difference in gene expression between the electric organ and skeletal muscle.
+
+1.  Load your data into DESeq2
+
+- Your data is located on Talapas:
+  /projects/bgmp/shared/Bi623/Project2/counts.tar
+- **Think carefully about your design formula and explain your chosen
+  formula below**
+- Note: you can follow the Bear_analysis rmd from class as a template or
+  can also reference other resources online, such as this guide from
+  [Duke](https://people.duke.edu/~ccc14/duke-hts-2017/Statistics/08032017/DESeq2-Notebook-introduction.html)
+  to load your data.
+```{r}
+library(edgeR)
+library(limma)
+library(Glimma)
+library(ggplot2)
+library(RColorBrewer)
+library(DESeq2)
+library(dplyr)
+library(pheatmap)
+library(clusterProfiler)
+library(KEGGREST)
+library(enrichplot)
+library(apeglm)
+library("pheatmap")
+library("RColorBrewer")
+```
+
+```{r}
+# set the directory and read in data
+metadata = read.csv("C:/Users/chery/OneDrive/Documents/Bi623/Project-2-Electric-organ-RNA-seq-analysis/Part4/Project2_RNAseq_metadata_campy.csv", stringsAsFactors=FALSE)
+```
+
+[Explain the logic behind your design formula]
+
+I included Species and Tissue in the design formula to account for differences in gene expression associated with species and to test for differences between electric organ (EO) and skeletal muscle (SM). I also included the Species:Tissue interaction to determine whether the effect of tissue type on gene expression differs among species.
+
+2.  Filter the dataset to remove genes that are lowly expressed
+
+- There are multiple ways to filter RNA-Seq datasets. You can either use
+  cpm as a filter as we did in the Bear_analysis or use raw counts
+  completed in the DESeq2 vignette from the above resources.
+- Describe why you used your filtering strategy
+
+```{r}
+filtered = filter_out(metadata, AgeSize == "6cm")
+
+# Load in counts into an DESeq object
+campy = DESeqDataSetFromHTSeqCount(filtered,directory="C:/Users/chery/OneDrive/Documents/Bi623/Project-2-Electric-organ-RNA-seq-analysis/Part4/counts_tar",design=~Species+Tissue+Species:Tissue)
+
+campy
+```
+
+[Specify which approach you chose and why]
+
+I chose to filter genes with low expression before performing differential expression analysis because genes with very low counts provide little reliable information and can add noise to the analysis. I retained genes with at least 0.5 CPM in at least two samples so that the analysis focused on genes with sufficient expression to make meaningful comparisons while removing genes that were unlikely to provide useful information.
+
+3.  Normalize the dataset and run differential expression analysis
+
+- You may choose to normalize and run differential expression separately
+  as done in the Bear_analysis, or in 1 command as done in the DESeq
+  workflow 5.1.
+
+```{r}
+# Obtain CPMs
+myCPM <- cpm(campy)
+# Which values in myCPM are greater than 0.5?
+thresh <- myCPM > 0.5
+# we would like to keep genes that have at least 2 TRUES in each row of thresh
+keep <- rowSums(thresh) >= 2
+# Subset the rows of count data to keep the more highly expressed genes
+campy = campy[keep,]
+
+campy = DESeq(campy)
+```
+
+4.  Normalize the data to use for dimensionality reduction
+
+- Use the rlog transformation method (follow along with the workflow,
+  section 4.2)
+- Describe why the rlog transformation is performed
+
+```{r}
+campy_rlogdata = rlog(campy)
+```
+
+[Write a description on the rlog transformation]
+
+The rlog stabilizes the variance across all the genes and this is important for calculations with dimensionality reduction.
+
+5.  Identify distances between samples using sample distance heatmaps
+
+- Generate a Euclidean distance heatmap and dendrogram using your rlog
+  transformed data (follow workflow section 4.3)
+- Create a Poisson distance heatmap with dendrogram using DESeq data
+  (follow workflow section 4.3)
+- Describe what each of these heatmaps are measuring
+- Look at the sample groupings for each heatmap+dendrogram. Do you
+  notice any potential individual outliers? Do both plots agree?
+
+Note: You may need to install the packages “pheatmap” and “RColorBrewer”
+to follow along. If R tells you to restart your session listen to it.
+
+
+```{r, fig.height=8}
+#Include your commands for generating the Euclidean distance heatmap and dendrogram with the rlog data
+
+sampleDists = dist(t(assay(campy_rlogdata)))
+
+sampleDistMatrix = as.matrix( sampleDists )
+rownames(sampleDistMatrix) = campy_rlogdata$Tissue
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows = sampleDists,
+         clustering_distance_cols = sampleDists,
+         col = colors)
+```
+
+```{r, fig.height=8, fig.width=15}
+#Include your commands for generating the Poisson distance heatmap with dendrogram using your original count matrix
+
+library("PoiClaClu")
+poisd = PoissonDistance(t(counts(campy)))
+
+samplePoisDistMatrix = as.matrix( poisd$dd )
+rownames(samplePoisDistMatrix) <- paste(campy$Tissue, campy$Sample, sep=" - " )
+colnames(samplePoisDistMatrix) = campy$Sample
+pheatmap(samplePoisDistMatrix,
+         clustering_distance_rows = poisd$dd,
+         clustering_distance_cols = poisd$dd,
+         col = colors)
+```
+
+[Describe the two heatmaps and what they are measuring (Any outliers? Do
+the plots have the same interpretation?)]
+
+  
+The Euclidean distance heatmap measures and displays the Euclidean distance between each point in the rlog transformed matrix of gene expression for each Sample.The Poisson distance heatmap measures the dissimilarity in original counts (not log transformed) while taking into account its variance structure when calculating these distances. The dendrograms show which samples are similar.
+
+The two heatmaps both have Samples on the x-axis and type of tissue on the y-axis. I noticed that com15 is an outlier in both plots. Aside from the one outlier, all the EO and SM samples cluster together in both plots. Therefore overall, I think both plots have the same interpretation.
+
+
+6.  Examine similarity in sample global gene expression using PCA,
+    Generalized PCA, and MDS plots.
+
+- Generate PCA, Generalized PCA, and MDS plots (following workflow
+  section 4.4-4.6)
+- Modify the color and shape of points to reflect Tissue and Species of
+  samples
+- Briefly describe each approach and their findings.
+
+```{r}
+# PCA 
+
+pcaData = plotPCA(campy_rlogdata,intgroup=c("Species", "Tissue"), returnData=TRUE)
+percentVar = round(100 * attr(pcaData, "percentVar"))
+ggplot(pcaData, aes(PC1, PC2, color=Tissue, shape=SpeciesSmaller)) +
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
+  ggtitle("PCA Plot") +
+  coord_fixed()
+```
+
+```{r}
+# generalized PCA
+
+library("glmpca")
+gpca = glmpca(counts(campy), L=2)
+gpca.dat = gpca$factors
+ggplot(gpca.dat, aes(x = dim1, y = dim2, color = campy$Tissue, shape = campy$SpeciesSmaller)) +
+  geom_point(size =3) + coord_fixed() + ggtitle("campy - Generalized PCA") 
+```
+
+```{r}
+# MDS plots
+
+mds = as.data.frame(colData(campy_rlogdata))  %>%
+         cbind(cmdscale(sampleDistMatrix))
+ggplot(mds, aes(x = `1`, y = `2`, color = Tissue, shape = SpeciesSmaller)) +
+  geom_point(size = 3) + coord_fixed() + ggtitle("MDS with campy data")
+```
+
+[Describe appropriateness of methods, their approaches, and their
+findings]
+
+PCA is a way to visualize sample-to-sample distances by mapping the global gene expression weights for different genes. It shows that 73% of variance is explained by PC1 and 7% of variance is explained by PC2. In the PCA plot generated above, there is distinct clustering that splits by tissue (EO vs SM). 
+
+Generalized PCA is a technique for for performing dimension reduction on data that is not Normally distributed and takes as input the count matrix. The generalized PCA plot above also showed distinct clustering by tissue type (EO vs SM).
+
+MDS plots are a means of visualizing the level of similarity of individual cases of a data set and useful when we only a matrix of distances (not a matrix of data). The MDS plot above also shows distinct clustering by tissue type (EO vs SM), in which the x-axis shows Tissue and y-axis shows the Species. 
+
+All three plots above showed a SM outlier within the cluster of EO data.
+
+All of the methods work appropriately by applying transforming data differently depending on which dataset is being used. For example, RNA-seq commonly doesnt have normally distributed data, so generalized PCA would be appropriate.
+
+
+7.  Use your dimensionality reduction plots, evaluate sample quality and
+    complete quality adjustments.
+
+- Based on your dimensionality reduction plots, do you have concerns
+  about any samples? Explain.
+- If so, remove them now, repeat steps of loading in data, filtering,
+  normalization, and running the differential expression analysis.
+
+[Describe your answer. If you identify a problem, then include the code
+used to repeat the initial data loading, filtering, normalization, and
+DE steps]
+
+-------ANSWER
+
+I noticed that com15 is an outlier, so I filtered it out because it had SM tissue but clustered with the EO tissue. I am concerned it may have been mislabeled and would therefore impact analysis.
+
+
+```{r}
+filtered2 = filter_out(metadata, AgeSize == "6cm") %>%
+  filter( Sample!="com15")
+
+# Load in counts into an DESeq object
+campy2 = DESeqDataSetFromHTSeqCount(filtered2,directory="C:/Users/chery/OneDrive/Documents/Bi623/Project-2-Electric-organ-RNA-seq-analysis/Part4/counts_tar",design=~Species+Tissue+Species:Tissue)
+
+campy2
+
+# Obtain CPMs
+myCPM2 = cpm(campy2)
+# Which values in myCPM are greater than 0.5?
+thresh2 = myCPM2 > 0.5
+# we would like to keep genes that have at least 2 TRUES in each row of thresh
+keep2 = rowSums(thresh) >= 2
+# Subset the rows of count data to keep the more highly expressed genes
+campy2 = campy2[keep,]
+
+campy2 = DESeq(campy2)
+
+# normalize data
+campy2_rlogdata = rlog(campy2)
+```
+
+```{r, fig.height=8}
+#Include your commands for generating the Euclidean distance heatmap and dendrogram with the rlog data
+
+sampleDists2 = dist(t(assay(campy2_rlogdata)))
+
+sampleDistMatrix2 = as.matrix( sampleDists2 )
+rownames(sampleDistMatrix2) = campy2_rlogdata$Tissue
+colors2 = colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix2,
+         clustering_distance_rows = sampleDists2,
+         clustering_distance_cols = sampleDists2,
+         col = colors)
+```
+
+```{r, fig.height=8}
+#Include your commands for generating the Poisson distance heatmap with dendrogram using your original count matrix
+
+library("PoiClaClu")
+poisd2 = PoissonDistance(t(counts(campy2)))
+
+samplePoisDistMatrix2 = as.matrix( poisd$dd )
+rownames(samplePoisDistMatrix2) = paste(campy2$dex, campy2$cell, sep=" - " )
+pheatmap(samplePoisDistMatrix2,
+         clustering_distance_rows = poisd$dd,
+         clustering_distance_cols = poisd$dd,
+         col = colors)
+```
+
+```{r}
+# PCA
+
+pcaData2 = plotPCA(campy2_rlogdata,intgroup=c("Species", "Tissue"), returnData=TRUE)
+percentVar2 = round(100 * attr(pcaData2, "percentVar"))
+ggplot(pcaData2, aes(PC1, PC2, color=Tissue, shape=SpeciesSmaller)) +
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVar2[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar2[2],"% variance")) + 
+  coord_fixed()
+```
+
+```{r}
+# generalized PCA
+
+library("glmpca")
+gpca2 = glmpca(counts(campy2), L=2)
+gpca2.dat = gpca2$factors
+ggplot(gpca2.dat, aes(x = dim1, y = dim2, color = campy2$Tissue, shape = campy2$SpeciesSmaller)) +
+  geom_point(size =3) + coord_fixed() + ggtitle("campy (with com 15 removed) - Generalized PCA")
+```
+
+```{r}
+# MDS plots
+
+mds2 = as.data.frame(colData(campy2_rlogdata))  %>%
+         cbind(cmdscale(sampleDistMatrix2))
+ggplot(mds2, aes(x = `1`, y = `2`, color = Tissue, shape = SpeciesSmaller)) +
+  geom_point(size = 3) + coord_fixed() + ggtitle("MDS with campy data (com 15 removed)")
+```
+
+8.  Identify genes that are differentially expressed between SM and EO
+    tissues in EVERY species comparison.
+
+- Generate a results table using log fold shrinkage and proper contrasts
+- Refer to this [reference for guidance on extracting
+  contrasts](https://bioinformatics-core-shared-training.github.io/Bulk_RNAseq_Course_June24/Bulk_RNAseq_Course_Base/additional_scripts_and_materials/DESeq2_results_cheatsheet.pdf)
+- When setting contrasts, identify the baseline variables used in the
+  intercept to help determine proper contrasts
+- Filter DEGs to contain only candidates with a \|log2FoldChange\|\>1
+  and adjusted value \< .05
+- Join DEG data sets for every species, remove any DEG not found in
+  every species, and calculate the average log2FC and average adjusted
+  p-value across all species
+- Visualize your cleaned DEG dataset with a [volcano
+  plot](https://dputhier.github.io/jgb71e-polytech-bioinfo-app/practical/rna-seq_R/rnaseq_diff_Snf2.html).
+  - Use the average log2FC and adjusted p-values for plotting
+  - Make sure your plot indicates the meaning of negative and positive
+    logfold changes
+
+```{r}
+resultsNames(campy2)
+
+cco = data.frame(lfcShrink(campy2, coef="Tissue_SM_vs_EO", type="ashr")) %>%
+  rownames_to_column(var="gene") %>%
+  select(gene, log2FoldChange,padj) %>%
+  filter(abs(log2FoldChange) >1, padj < 0.05) %>%
+  rename(cco_log2FoldChange=log2FoldChange) %>%
+  rename(cco_padj=padj)
+
+ccoxcrh = data.frame(lfcShrink(campy2, contrast=list(c("Tissue_SM_vs_EO", "SpeciesCampylomormyruscompressirostrisxCampylomormyrusrhynchophorus.TissueSM")), type="ashr")) %>%
+  rownames_to_column(var="gene") %>%
+  select(gene, log2FoldChange,padj) %>%
+  filter(abs(log2FoldChange) >1, padj < 0.05) %>%
+  rename(ccoxcrh_log2FoldChange=log2FoldChange) %>%
+  rename(ccoxcrh_padj=padj)
+
+ccoxcts = data.frame(lfcShrink(campy2, contrast=list(c("Tissue_SM_vs_EO", "SpeciesCampylomormyruscompressirostrisxCampylomormyrustshokwe.TissueSM")), type="ashr")) %>%
+  rownames_to_column(var="gene") %>%
+  select(gene, log2FoldChange,padj) %>%
+  filter(abs(log2FoldChange) >1, padj < 0.05) %>%
+  rename(ccoxcts_log2FoldChange=log2FoldChange) %>%
+  rename(ccoxcts_padj=padj)
+
+crh = data.frame(lfcShrink(campy2, contrast=list(c("Tissue_SM_vs_EO", "SpeciesCampylomormyrusrhynchophorus.TissueSM")), type="ashr")) %>%
+  rownames_to_column(var="gene") %>%
+  select(gene, log2FoldChange,padj) %>%
+  filter(abs(log2FoldChange) >1, padj < 0.05) %>%
+  rename(crh_log2FoldChange=log2FoldChange) %>%
+  rename(crh_padj=padj)
+
+cts = data.frame(lfcShrink(campy2, contrast=list(c("Tissue_SM_vs_EO", "SpeciesCampylomormyrustshokwe.TissueSM")), type="ashr")) %>%
+  rownames_to_column(var="gene") %>%
+  select(gene, log2FoldChange,padj) %>%
+  filter(abs(log2FoldChange) >1, padj < 0.05) %>%
+  rename(cts_log2FoldChange=log2FoldChange) %>%
+  rename(cts_padj=padj)
+
+joined = inner_join(cco, ccoxcrh, by = "gene") %>%
+  inner_join(ccoxcts, by = "gene") %>%
+  inner_join(crh, ccoxcrh, by = "gene") %>%
+  inner_join(cts, ccoxcrh, by = "gene")
+
+log2FoldChange_avg = joined %>%
+  select(contains("log2FoldChange")) %>%
+  rowMeans()
+padj_avgs = joined %>%
+  select(contains("adj")) %>%
+  rowMeans()
+  
+joined = joined %>%
+  mutate(AverageLog2FoldChange=log2FoldChange_avg) %>%
+  mutate(AveragePadj=padj_avgs)
+
+## Volcano plot of adjusted p-values
+cols = densCols(
+  joined$AverageLog2FoldChange,
+  -log10(joined$AveragePadj)
+)
+
+joined$pch = 19
+
+plot(
+  -joined$AverageLog2FoldChange,
+  -log10(joined$AveragePadj),
+  col = cols,
+  panel.first = grid(),
+  main = "Volcano plot with\npositive logfold changes representing upregulation in EO\nand negative logfold changes representing upregulation in SM",
+  xlab = "-log2(fold-change)",
+  ylab = "-log10(adjusted p-value)",
+  pch = joined$pch,
+  cex = 0.4
+)
+
+abline(v = 0)
+abline(v = c(-1, 1), col = "brown")
+abline(h = -log10(0.05), col = "brown")
+
+```
+
+9.  Visualize individual candidates
+
+- Using the DEG dataframe from above, report out the top five candidates
+  with the lowest average adjusted p-value.
+  
+    The top five candidates with the lowest average adjusted p-value:
+    1) maker-ptg000555l-snap-gene-1.19-mRNA-1	
+    2) maker-ptg001270l-snap-gene-47.16-mRNA-1		
+    3) maker-ptg000070l-snap-gene-5.18-mRNA-1		
+    4) snap_masked-ptg000102l-processed-gene-12.45-mRNA-1		
+    5) maker-ptg000361l-snap-gene-40.32-mRNA-1
+        
+- Using the DEG dataframe from above, visualize the normalized counts
+  for the gene with the highest log2FC in the SM. Also, make a plot for
+  the top candidate for the EO.
+  
+  The gene with the highest log2FC in the SM is snap_masked-ptg001143l-processed-gene-2.56-mRNA-1.
+  
+  The top candidate for the EO is maker-ptg000521l-snap-gene-0.25-mRNA-1. 
+
+```{r, figure.width=20}
+# Positive log2FC (+) → higher expression in EO
+# Negative log2FC (−) → higher expression in SM
+
+plotCounts(campy2, gene="snap_masked-ptg001143l-processed-gene-2.56-mRNA-1", intgroup="Tissue", normalized=TRUE, col=campy2$Tissue)
+```
+```{r}
+plotCounts(campy2, gene="snap_masked-ptg001143l-processed-gene-2.56-mRNA-1", intgroup="Tissue", normalized=TRUE, col=campy2$Tissue)
+```
+
+10. Using the DESeq LRT test, evaluate whether there is an association
+    between gene expression and electric discharge signal duration
+
+- Complete a LRT test using design formulas to determine whether there
+  is an interaction between duration and electric discharge signal
+  - You may need to reload in the data to DESeq2 and re-process it
+    depending on how you specified your design formula.
+  - Follow this [resource to guide your
+    approach](https://hbctraining.github.io/Intro-to-DGE/lessons/08a_DGE_LRT_results.html)
+  - Use only the purebred species for this analysis (NO hybrids, i.e.,
+    do not include ccoxcts or ccoxcrh in the analysis)
+- Use degPatterns to sort genes into groups that correspond to EOD
+  duration
+  - From the output, identify groups that 1) have higher gene expression
+    in the EO than SM and 2) have gene expression patterns that increase
+    or decrease with EOD duration
+  - Create a plot from degPlotCluster to showcase ONLY these selected
+    groups (ex: a group of genes that has a higher abundance in longer
+    compared to shorter duration electric signals)
+
+```{r}
+## YOUR CODE HERE
+```
+
+11. Based on the signal duration clustering, select 1 of the relevant
+    clusters and complete a gene ontology analysis.
+
+- Isolate a gene list for the cluster of interest
+- Convert Campy gene names to D. rerio gene names using the orthology
+  table derived from our ICA2 Genespace assignment (Danio_Campylomormyrus_1to1_orthologs_table.csv)
+  - Note: degPatterns transforms the Campy gene names, make sure to
+    change them back so they match with the orthology table
+- Complete a gene ontology analysis on the cluster of interest using the
+  zebrafish gene names
+  - Note: enrichGO and enrichKEGG are options, use this
+    [reference](https://yulab-smu.top/biomedical-knowledge-mining-book/021-go.html#clusterprofiler-go-ora)
+
+```{r}
+#Include commands
+```
+
+## Project 2 Part 5: Creating high quality figures for your report
+
+Go back through your work from part 1-4 and identify the key pieces of
+information and plots for writing your project 2 report. Remake your
+chosen plots below, creating publication quality figures. Your project 2
+report should have 4-6 figures, these can have multiple panels if you
+know how to achieve that in R. Each figure should add a different piece
+of information (i.e., do NOT include 3 dimensionality plots that show
+the same pattern).
+
+Guidelines:
+
+-  Figures should have a title and axes that are easy to read
+
+- Have an accessible color scheme
+
+- Have scientifically relevant information highlighted (ex: color scheme
+  denotes different species)
+
+- When applicable, color schemes should be consistent across plots
+
+1.  Figure 1
+
+```{r}
+#Make figure 
+#OR delete this box and link a figure that you made outside of R
+```
+
+2.  Figure 2
+
+```{r}
+#Make figure 
+#OR delete this box and link a figure that you made outside of R
+```
+
+3.  Figure 3
+
+```{r}
+#Make figure 
+#OR delete this box and link a figure that you made outside of R
+```
+
+4.  Figure 4
+
+```{r}
+#Make figure 
+#OR delete this box and link a figure that you made outside of R
+```
+
+5.  Figure 5
+
+```{r}
+#OPTIONAL analysis
+```
+
+5.  Figure 6
+
+```{r}
+#OPTIONAL analysis
+```

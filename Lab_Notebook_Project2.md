@@ -1,9 +1,7 @@
 # Lab Notebook: Bi623-Project2
-8/27/2026 - Downloaded the two SRR files that was assigned to me 
 
-Project2 Folder Path: /projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis
+Project Folder Path: /projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis
 
-Version:
 ```
 SRA tools 3.4.1
 fastqc  0.12.1
@@ -16,7 +14,25 @@ Matplotlib 3.11.1
 HTseq 2.1.2
 agat 1.7.0
 ```
-## Bi623-Project2-Part1
+Project Goal: Process electric organ and/or skeletal muscle RNA-seq reads and then complete a differential expression analysis to address a biological question. 
+
+Project Outline:
+
+1) Using `FastQC`, produce plots of the per-base quality score distributions for R1 and R2 reads and then produce plots of the per-base N content.
+2) Trim adapter sequences from assigned files using `Cutadapt` and then quality trim the reads using `Trimmomatic`. Plot trimmed read length distributions for both paired R1 and paired R2 reads.
+3) Align the reads to generated C. compressirostris database using a splice-aware aligner and count reads that map to features using `htseq-count`. Determine whether reads are "strand-specific".
+
+Datasets:
+
+RNA-seq reads from Camplylomormyrus fishes, originating from 2 projects (found on NCBI: PRJNA1005244 and PRJNA1005245).
+
+Two SRR files that was assigned to me in 
+`/projects/bgmp/shared/Bi623/Project2/Project2_part1_3_data_assignments.txt` from NCBI:
+
+`SRR25630408  `   
+`SRR25630384`
+
+## Part 1
 ### Added SRA Toolkit, Fastqc, Cutadapt, and Trimmomatic to pixi environment
 
 `pixi add sra-tools cutadapt trimmomatic fastqc`
@@ -150,7 +166,7 @@ Cco_com101_EO_adult_1_1.fastq.gz
 Cco_com101_EO_adult_1_2.fastq.gz
 ```
 
-## Bi623-Project2-Part2
+# Part 2
 
 Per FastQC reports, sequences have Illumina Universal Adapters. 
 
@@ -337,7 +353,7 @@ Used this command:
 
 `pixi run fastqc *paired.fastq.gz -o /projects/bgmp/csung/bioinfo/bi623/Project-2-Electric-organ-RNA-seq-analysis`
 
-## Bi623-Project2-Part3
+# Part 3
 
 ### Install additional software for alignment and counting of RNA-seq reads
 
@@ -579,3 +595,11 @@ Percent of reads mapped, rv: 50.00%
 
 This kit was used during library preparation (strand-specific):
 https://www.revvity.com/product/nex-rapid-dir-rna-seq-kit-2-0-8rxn-nova-5198-01 
+
+# Part 4
+
+Wrote `Project2_part4/Project2_Part4.Rmd` to investigate the differences in gene expression between the electric organ and skeletal muscle and learn how to analyze RNA-seq count data.
+
+
+
+
